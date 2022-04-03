@@ -38,17 +38,17 @@ def index():
     print(quote)
     print("quote")
     return flask.render_template(
-        "discovery.html",
+        "home.html",
         quote=get_quote(),
     )
 
 
-# @app.route("/discovery")
-# def discovery():
+# @app.route("/home")
+# def home():
 #     """Returns quote from api"""
 #     quote = get_quote()
 #     return render_template(
-#         "discovery.html",
+#         "home.html",
 #         quote=get_quote(),
 #     )
 
