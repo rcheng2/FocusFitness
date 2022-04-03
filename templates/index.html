@@ -10,15 +10,16 @@
 
 <body>
     <form action="/calculate" method="POST">
-        <label for="type">Input exercise:</label>
-        <select id="type" name="type">
+        <label for="exercise_type">Input exercise:</label>
+        <select id="exercise_type" name="exercise_type">
             <option value="cardio">Cardio</option>
+            <option value="weightlifting">Lifting weights</option>
         </select>
         <input type="text" name="duration" placeholder="time in minutes"/>
         <input type="text" name="weight" placeholder="weight in kilos"/>
         <input type="submit" value="Save">
     </form>
-    <h2>Calories burned: {calories_burned}</h2>
+    <h2>Calories burned: {{calories_burned}} kcal</h2>
 </body>
 
 </html>
