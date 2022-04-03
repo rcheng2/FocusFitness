@@ -6,8 +6,8 @@
 header {
     vertical-align: middle;
     text-align: center;
-    /* background-color: #284b63; */
-    background-image: linear-gradient(#284b63, #305975);
+    /* background-color: #284b63; #284b63, #305975 */
+    background-image: linear-gradient(#bcbdbe, #182127);
     font-family: Copperplate, "Copperplate Gothic Light";
     font-size: 24px;
     padding-top: 20px;
@@ -18,6 +18,13 @@ body {
     height: 100%;
     line-height: 50px;
     text-align: left;
+    background-image: url("https://freerangestock.com/sample/138393/gym.-man-doing-leg-workout.-black-and-white.jpg");
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    opacity: 0.5;
     background-color: #353535;
     /* background-image: linear-gradient( #353535,#181818); */
     font-family: 'Courier';
@@ -27,6 +34,14 @@ body {
 
 h1 {
     color: white;
+}
+
+h2 {
+    color: white;
+}
+
+p {
+    color: white
 }
 
 div {
@@ -155,4 +170,71 @@ input[type=password] {
     width: 300px;
     height: 400px;
 
+}
+
+.tabs {
+
+    position: relative;
+    float: right;
+
+
+
+
+    display: flex;
+    flex-wrap: wrap;
+
+    margin: 0;
+    max-width: 400px;
+
+}
+
+.tabs__radio {
+    display: none;
+
+}
+
+.tabs__content {
+    display: none;
+    order: 1;
+    width: 100%;
+
+}
+
+
+
+.tabs__radio:checked+.tabs__label+.tabs__content {
+    display: initial;
+
+}
+
+.tabs__label {
+    background: #353535;
+    padding: 10px;
+    border: 1px solid rgb(255, 255, 255);
+}
+
+.tabs__label:hover {
+    background: rgb(47, 54, 51);
+    cursor: pointer;
+    color: black;
+}
+
+article {
+    float: left;
+    padding: 20px;
+    width: 70%;
+    background-color: #f1f1f1;
+    height: 300px;
+    /* only for demonstration, should be removed */
+}
+
+/* Clear floats after the columns */
+section::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.calendar {
+    float: right;
 }
