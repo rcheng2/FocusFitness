@@ -1,5 +1,5 @@
 """
-Wikilink creator
+Quotes Generator
 """
 import json
 import requests
@@ -8,7 +8,6 @@ import requests
 def get_quote():
     """Returns random quote"""
     base_url = "https://zenquotes.io/api/random"
-    # print(base_url)
     params = {}
     response = requests.get(base_url, params=params)
     data = response.json()
