@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<HTML>
+
+<HEAD>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</HEAD>
+<TITLE>
+    Movie Explorer
+</TITLE>
+
+<BODY>
+
+    <p>Test</p>
+    <p class="user">Hi {{currentuser}} !</p>
+    <div class="button">
+        <form method="POST" action="/logoff">
+            <input type="submit" value="Log Out!" />
+
+</BODY>
+
+</HTML>
