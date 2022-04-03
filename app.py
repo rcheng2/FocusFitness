@@ -98,6 +98,17 @@ def page_not_found(error):
     return render_template("404.html"), 404
 
 
+@app.route("/workouts")
+def workouts():
+    """Returns login screen"""
+    quote = get_quote()
+    print(quote)
+    print("quote")
+    return flask.render_template(
+        "workouts.html",
+    )
+
+
 app.run(
     host=os.getenv("IP", "0.0.0.0"), port=int(os.getenv("PORT", "8080")), debug=True
 )

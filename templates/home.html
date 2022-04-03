@@ -17,16 +17,88 @@ Reference Links:
     <header>
         <h1>Focus Fitness</h1>
     </header>
-    <div class="container">
-        <div class="parent">
-            <div class="info">
-                <p>Quote: {{quote}}</p>
-                <button id="submit" onClick="window.location.reload();">Need more motivation?</button>
-            </div>
+    <div class="tabs">
+        <input type="radio" class="tabs__radio" name="tabs" id="tab1" checked>
+        <label for="tab1" class="tabs__label">
+            <a href="/">Home</a>
+        </label>
+        <div class="tabs__content">
+
+        </div>
+
+        <input type="radio" class="tabs__radio" name="tabs" id="tab2" checked>
+        <label for="tab2" class="tabs__label">
+            <a href="/workouts"> WORKOUT</a>
+        </label>
+        <div class="tabs__content">
+        </div>
+
+        <input type="radio" class="tabs__radio" name="tabs" id="tab3" checked>
+        <label for="tab3" class="tabs__label">
+            <a href="/history/"> History </a>
+        </label>
+        <div class="tabs__content">
+
+        </div>
+
+        <input type="radio" class="tabs__radio" name="tabs" id="tab4" checked>
+        <label for="tab4" class="tabs__label">
+            <a href="/logout/"> Logout </a>
+        </label>
+        <div class="tabs__content">
         </div>
     </div>
 
-    <br><br>
+    <h2>Workouts</h2>
+    <p> What exercises would you like to track?</p>
+    <section>
+
+        <nav>
+            <ul>
+                <li><a href="#">Situps</a></li>
+                <li><a href="#">Walking</a></li>
+                <li><a href="#">Running</a></li>
+                <li><a href="#">Bench Press</a></li>
+            </ul>
+        </nav>
+    </section>
+    <div class="container">
+        <form method="POST" action="/workout">
+
+
+            <p style="text-align:left">Time:<input type="number" name="time" min="1"></p>
+            <p style="text-align:left">Weight:<input type="number" name="weight" min="1"></p>
+            <p style="text-align:left"><input type="submit" id="submit" value="Submit" /></p>
+        </form>
+    </div>
+
+    <h2>Recent Workouts</h2>
+    <section>
+
+        <nav>
+            <ol>
+                <li><a href="#">Situps</a></li>
+                <li><a href="#">Walking</a></li>
+                <li><a href="#">Running</a></li>
+                <li><a href="#">Bench Press</a></li>
+            </ol>
+        </nav>
+        <div class="Calendar">
+            <h2> Calendar </h2>
+
+        </div>
+
+
+        <div class="container">
+            <div class="parent">
+                <div class="info">
+                    <p>Quote: {{quote}}</p>
+                    <button id="submit" onClick="window.location.reload();">Need more motivation?</button>
+                </div>
+            </div>
+        </div>
+
+        <br><br>
 
 </body>
 
