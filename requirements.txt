@@ -1,0 +1,6 @@
+Flask
+requests
+python-dotenv
+Flask-Login
+Flask-SQLAlchemy
+psycopg2-binary
