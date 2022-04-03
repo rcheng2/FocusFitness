@@ -19,6 +19,7 @@ class Record(db.Model):
     username = db.Column(db.String(80))
     duration = db.Column(db.Integer)
     weight = db.Column(db.Integer)
+    exercise_type = db.Column(db.String())
     calories_burned = db.Column(db.String())
 
 @app.route("/")
@@ -46,6 +47,7 @@ def calculate():
         new_record = Record(username="username",
         duration=duration,
         weight=weight,
+        exercise_type=exercise_type,
         calories_burned=calories_burned)
 
         db.session.add(new_record)
