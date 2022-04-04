@@ -35,3 +35,12 @@ class Users(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     login_name = db.Column(db.String(50), nullable=False, unique=True)
     password_hash = db.Column(db.String(100), nullable=False)
+
+class Record(db.Model):
+    """ Table for exercise records """
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80))
+    duration = db.Column(db.Integer)
+    weight = db.Column(db.Integer)
+    exercise_type = db.Column(db.String())
+    calories_burned = db.Column(db.String())

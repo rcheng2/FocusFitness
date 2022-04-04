@@ -51,25 +51,18 @@ Reference Links:
 
     <h2>Workouts</h2>
     <p> What exercises would you like to track?</p>
-    <section>
-
-        <nav>
-            <ul>
-                <li><a href="#">Situps</a></li>
-                <li><a href="#">Walking</a></li>
-                <li><a href="#">Running</a></li>
-                <li><a href="#">Bench Press</a></li>
-            </ul>
-        </nav>
-    </section>
     <div class="container">
-        <form method="POST" action="/workout">
-
-
-            <p style="text-align:left">Time:<input type="number" name="time" min="1"></p>
-            <p style="text-align:left">Weight:<input type="number" name="weight" min="1"></p>
-            <p style="text-align:left"><input type="submit" id="submit" value="Submit" /></p>
+        <form action="/calculate" method="POST">
+            <label for="exercise_type">Input exercise:</label>
+            <select id="exercise_type" name="exercise_type">
+                <option value="cardio">Cardio</option>
+                <option value="weightlifting">Lifting weights</option>
+            </select>
+            <input type="text" name="duration" placeholder="time in minutes"/>
+            <input type="text" name="weight" placeholder="weight in kilos"/>
+            <input type="submit" value="Save">
         </form>
+        <h2>Calories burned: {{calories_burned}} kcal</h2>
     </div>
 
     <h2>Recent Workouts</h2>
