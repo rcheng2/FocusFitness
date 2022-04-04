@@ -23,10 +23,10 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 # # Gets rid of a warning
 # app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
-# if app.config["SQLALCHEMY_DATABASE_URI"].startswith("postgres://"):
-#     app.config["SQLALCHEMY_DATABASE_URI"] = app.config[
-#         "SQLALCHEMY_DATABASE_URI"
-#     ].replace("postgres://", "postgresql://") """ """
+if app.config["SQLALCHEMY_DATABASE_URI"].startswith("postgres://"):
+    app.config["SQLALCHEMY_DATABASE_URI"] = app.config[
+        "SQLALCHEMY_DATABASE_URI"
+    ].replace("postgres://", "postgresql://")
 
 
 db.init_app(app)
@@ -75,10 +75,11 @@ def workouts():
         "workouts.html",
     )
 
+
 @app.route("/calculate", methods=["POST"])
 def calculate():
-    """ Route to calculate calories burned and write to database """
-    if flask.request.method == 'POST':
+    """Route to calculate calories burned and write to database"""
+    if flask.request.method == "POST":
         duration = int(flask.request.values.get("duration"))
         weight = int(flask.request.values.get("weight"))
         exercise_type = flask.request.values.get("exercise_type")
@@ -90,20 +91,25 @@ def calculate():
         else:
             met = 3
 
-        calories_burned = duration * ( met * 3.5 * weight) / 200
+        calories_burned = duration * (met * 3.5 * weight) / 200
 
-        new_record = Record(username="username",
-        duration=duration,
-        weight=weight,
-        exercise_type=exercise_type,
-        calories_burned=calories_burned)
+        new_record = Record(
+            username="username",
+            duration=duration,
+            weight=weight,
+            exercise_type=exercise_type,
+            calories_burned=calories_burned,
+        )
 
         db.session.add(new_record)
         db.session.commit()
 
-        return flask.render_template("home.html", calories_burned=calories_burned, quote=get_quote())
+        return flask.render_template(
+            "home.html", calories_burned=calories_burned, quote=get_quote()
+        )
 
     return flask.render_template("home.html", quote=get_quote())
+
 
 if __name__ == "__main__":
     app.run(
