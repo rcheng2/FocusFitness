@@ -58,8 +58,8 @@ Reference Links:
                 <option value="cardio">Cardio</option>
                 <option value="weightlifting">Lifting weights</option>
             </select>
-            <input type="number" name="duration" placeholder="time in minutes" required min="1"/>
-            <input type="number" name="weight" placeholder="weight in kilos" required min="1"/>
+            <input type="number" name="duration" placeholder="Time in minutes" required min="1" max="9999"/>
+            <input type="number" name="weight" placeholder="Your weight in kilos" required min="1" max="9999"/>
             <input type="submit" value="Save">
         </form>
         <h2>Calories burned: {{calories_burned}} kcal</h2>
