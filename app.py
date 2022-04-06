@@ -17,31 +17,23 @@ app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
-# """DATABASE SETUP"""
-# # Point SQLAlchemy to your Heroku database
-# app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
-# # Gets rid of a warning
-# app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-
-if app.config["SQLALCHEMY_DATABASE_URI"].startswith("postgres://"):
+""" if app.config["SQLALCHEMY_DATABASE_URI"].startswith("postgres://"):
     app.config["SQLALCHEMY_DATABASE_URI"] = app.config[
         "SQLALCHEMY_DATABASE_URI"
-    ].replace("postgres://", "postgresql://")
+    ].replace("postgres://", "postgresql://") """
 
 
 db.init_app(app)
 
-# # used to prevent circular imports
-with app.app_context():
-    db.create_all()
+# used to prevent circular imports
+# with app.app_context():
+#     db.create_all()
 
 
 @app.route("/")
 def index():
     """Returns login screen"""
     quote = get_quote()
-    print(quote)
-    print("quote")
     return flask.render_template(
         "home.html",
         quote=get_quote(),
@@ -69,8 +61,6 @@ def page_not_found(error):
 def workouts():
     """Returns login screen"""
     quote = get_quote()
-    print(quote)
-    print("quote")
     return flask.render_template(
         "workouts.html",
     )
