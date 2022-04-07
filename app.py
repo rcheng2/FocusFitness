@@ -55,14 +55,14 @@ login_manager.init_app(app)
 if app.config["SQLALCHEMY_DATABASE_URI"].startswith("postgres://"):
     app.config["SQLALCHEMY_DATABASE_URI"] = app.config[
         "SQLALCHEMY_DATABASE_URI"
-    ].replace("postgres://", "postgresql://")
+    ].replace("postgres://", "postgresql://") """
 
 
 db.init_app(app)
 
-# # used to prevent circular imports
-with app.app_context():
-    db.create_all()
+# used to prevent circular imports
+# with app.app_context():
+#     db.create_all()
 
 # All of this is for login and authentication stuff
 def hashedpass(ptext):
@@ -155,8 +155,6 @@ def index():
     """Returns login screen"""
     quote = get_quote()
     currentuser = current_user.username
-    print(quote)
-    print("quote")
     return flask.render_template(
         "home.html", quote=get_quote(), currentuser=currentuser
     )
@@ -183,9 +181,9 @@ def page_not_found(error):
 def workouts():
     """Returns login screen"""
     quote = get_quote()
-    print(quote)
-    print("quote")
-    return flask.render_template("workouts.html",)
+    return flask.render_template(
+        "workouts.html",
+    )
 
 
 @app.route("/calculate", methods=["POST"])
