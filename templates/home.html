@@ -14,11 +14,14 @@
 
 <body>
 
+
     <div class="section shadow bg-dark-light">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark-light">
                 <div class="container-fluid">
                     <a class="navbar-brand fs-2 font-weight-bold" href="#">Focus Fitness</a>
+
+
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -35,15 +38,28 @@
                                 <a class="nav-link" href="#">History</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link btn btn-outline-danger text-danger" href="#">Logout</a>
+                                <form method="POST" action="/logoff">
+
+
+                                    <input type="submit" value="Log Out!" a
+                                        class="nav-link btn btn-outline-danger text-danger"></a>
+                                </form>
                             </li>
                         </ul>
                     </div>
+
                 </div>
+
             </nav>
+
         </div>
+
     </div>
+
     <div class="section">
+        <center>
+            <a class="navbar-brand fs-2 font-weight-bold" href="/index"> Welcome {{currentuser}} </a>
+        </center>
         <div class="container" style="height: auto;">
             <div class="row box">
                 <input type="button" class="btn btn-primary Calendar w-auto m-3" value="Calendar">
@@ -67,9 +83,9 @@
 
                                         <div class="d-flex justify-content-center">
                                             <input type="text" class="form-control my-3 mx-2 w-75" name="duration"
-                                                placeholder="Time in minutes">
+                                                placeholder="Time in minutes" required min="1" max="9999" />
                                             <input type="text" class="form-control my-3 w-75" name="weight"
-                                                placeholder="Weight in Kilos">
+                                                placeholder="Weight in Kilos" required min="1" max="9999" />
                                         </div>
                                         <div class="row justify-content-center">
                                             <input type="submit" class="btn btn-warning shadow-lg px-4 w-auto"
@@ -120,6 +136,7 @@
                 </div>
             </div>
         </div>
+
 
 
 
