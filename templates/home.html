@@ -20,7 +20,7 @@ Reference Links:
     <div class="tabs">
         <input type="radio" class="tabs__radio" name="tabs" id="tab1" checked>
         <label for="tab1" class="tabs__label">
-            <a href="/">Home</a>
+            <a href="/index">Home</a>
         </label>
         <div class="tabs__content">
 
@@ -43,7 +43,10 @@ Reference Links:
 
         <input type="radio" class="tabs__radio" name="tabs" id="tab4" checked>
         <label for="tab4" class="tabs__label">
-            <a href="/logout/"> Logout </a>
+            <form method="POST" action="/logoff">
+                <a href="/index"> Hi {{currentuser}} </a>
+                <input type="submit" value="Log Out!" />
+            </form>
         </label>
         <div class="tabs__content">
         </div>
