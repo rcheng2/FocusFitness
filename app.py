@@ -55,7 +55,7 @@ login_manager.init_app(app)
 if app.config["SQLALCHEMY_DATABASE_URI"].startswith("postgres://"):
     app.config["SQLALCHEMY_DATABASE_URI"] = app.config[
         "SQLALCHEMY_DATABASE_URI"
-    ].replace("postgres://", "postgresql://") """
+    ].replace("postgres://", "postgresql://")
 
 
 db.init_app(app)
