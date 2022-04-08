@@ -12,7 +12,7 @@ This wasn't an easy project to get off the ground at all, and like every other g
 
 ## Setup Instructions
 1. `pip3 install -r requirements.txt`
-2. 2. Create a `.env` file in the top-level directory and enter the following as its contents:
+2. Create a `.env` file in the top-level directory and enter the following as its contents:
 ```
 export SECRET_KEY="<YOUR SECRET KEY>"
 export DATABASE_URL="<YOUR POSTGRESQL DB URL>"
