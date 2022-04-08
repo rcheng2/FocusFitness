@@ -18,7 +18,6 @@ class TestFlaskRoutes(unittest.TestCase):
         response = tester.get("/", content_type = 'html/text')
         self.assertEqual(response.status_code, 200)
 
-
     def test_signup_route(self):
         """ Test if the /signuproute is setup correctly
         by return status code 200 from a get request"""
@@ -26,7 +25,7 @@ class TestFlaskRoutes(unittest.TestCase):
         response = tester.get("/signuppage", content_type = 'html/text')
         self.assertEqual(response.status_code, 200)
 
-    def test_index_unauthorized(self):
+    def test_index_route_unauthorized(self):
         """ Tests if login_required is working for the index route"""
         tester = app.test_client(self)
         response = tester.get('/index', content_type = "html/text")
@@ -54,7 +53,7 @@ class TestLoginAndSignUp(unittest.TestCase):
         response.data)
 
     def test_sign_in_user_already_exists(self):
-        """ Unit test for calculate function """
+        """ Tests to see if user is already in database"""
         tester = app.test_client(self)
         response = tester.post('/signuppage', data = dict(newuserid = "arshad",
         newpassword = "arshad"), follow_redirects = True)
@@ -63,36 +62,38 @@ class TestLoginAndSignUp(unittest.TestCase):
 
 class TestCalculate(unittest.TestCase):
     """ Unit tests for /calculate route """
+    
     def test_calculate_cardio(self):
-        """ Unit test for calculate function """
+        """ Test to check if /calculate works as intended when
+        exercise_type is cardio"""
         tester = app.test_client(self)
         response = tester.post('/calculate', data = dict(duration = "60",
-        weight = "100", exercise_type = "cardio"), follow_redirects = True
-        )
+        weight = "100", exercise_type = "cardio"), follow_redirects = True)
         app.config['LOGIN_DISABLED'] = True
         self.assertIn(b'Calories burned: 735.0 kcal', response.data)
 
     def test_calculate_weightlifting(self):
-        """ Unit test for calculate function """
+        """ Test to check if /calculate works as intended when
+        exercise_type is weightlifting"""
         tester = app.test_client(self)
         response = tester.post('/calculate', data = dict(duration = "60",
-        weight = "100", exercise_type = "weightlifting"), follow_redirects = True
-        )
+        weight = "100", exercise_type = "weightlifting"), follow_redirects = True)
         app.config['LOGIN_DISABLED'] = True
         self.assertIn(b'Calories burned: 525.0 kcal', response.data)
         
     def test_calculate_swimming_or_other(self):
-        """ Unit test for calculate function """
+        """ Test to check if /calculate works as intended when
+        exercise_type is anything other than the first two"""
         tester = app.test_client(self)
         response = tester.post('/calculate', data = dict(duration = "60",
-        weight = "100", exercise_type = "swimming"), follow_redirects = True
-        )
+        weight = "100", exercise_type = "swimming"), follow_redirects = True)
         app.config['LOGIN_DISABLED'] = True
         self.assertIn(b'Calories burned: 315.0 kcal', response.data)
 
 
 class QuotesTests(unittest.TestCase):
     """Unit test for quote function"""
+
     def test_get_quote(self):
         """mock response for quote"""
         mock_response = MagicMock()
@@ -100,6 +101,7 @@ class QuotesTests(unittest.TestCase):
         with patch("quotes.requests.get") as mock_requests_get:
             mock_requests_get.return_value = mock_response
             self.assertEqual(get_quote(), "random quote")
+        
         
 if __name__ == "__main__":
     unittest.main()

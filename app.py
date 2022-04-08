@@ -149,18 +149,8 @@ def index():
     quote = get_quote()
     currentuser = current_user.username
     return flask.render_template(
-        "home.html", quote=get_quote(), currentuser=currentuser
+        "home.html", quote=quote, currentuser=currentuser
     )
-
-
-# @app.route("/home")
-# def home():
-#     """Returns quote from api"""
-#     quote = get_quote()
-#     return render_template(
-#         "home.html",
-#         quote=get_quote(),
-#     )
 
 
 @app.errorhandler(404)
