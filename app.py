@@ -87,13 +87,6 @@ def signup():
     return flask.render_template("signup.html")
 
 
-@app.route("/main")
-@login_required
-def main():
-    currentuser = current_user.username
-    return flask.render_template("index.html", currentuser=currentuser)
-
-
 @app.route("/registernewuser", methods=["POST"])
 def registernewuser():
     try:

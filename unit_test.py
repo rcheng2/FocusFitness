@@ -18,13 +18,7 @@ class TestFlaskRoutes(unittest.TestCase):
         response = tester.get("/", content_type = 'html/text')
         self.assertEqual(response.status_code, 200)
 
-    def test_index_unauthorized(self):
-        """ Tests if login_required is working for the index route"""
-        tester = app.test_client(self)
-        response = tester.get('/index', content_type = "html/text")
-        self.assertIsNot(b'Welcome', response.data)
 
-    
     def test_signup_route(self):
         """ Test if the /signuproute is setup correctly
         by return status code 200 from a get request"""
@@ -32,6 +26,12 @@ class TestFlaskRoutes(unittest.TestCase):
         response = tester.get("/signuppage", content_type = 'html/text')
         self.assertEqual(response.status_code, 200)
 
+    def test_index_unauthorized(self):
+        """ Tests if login_required is working for the index route"""
+        tester = app.test_client(self)
+        response = tester.get('/index', content_type = "html/text")
+        self.assertIsNot(response.status_code, 200)
+    
 
 class TestLoginAndSignUp(unittest.TestCase):
     """ Unit tests for the login and signup pages """
