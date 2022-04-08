@@ -186,7 +186,7 @@ def workouts():
     )
 
 
-@app.route("/calculate", methods=["POST"])
+@app.route("/calculate", methods=["POST", "GET"])
 def calculate():
     """Route to calculate calories burned and write to database"""
     if flask.request.method == "POST":
