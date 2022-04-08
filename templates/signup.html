@@ -16,28 +16,35 @@
 
 <div class="signuppagediv">
     <center>
+        <br>
+        <br>
+        <br>
+        <br>
         <h1>Sign Up Page</h1>
         <p>Enter your new username below!</p>
-        <form method="POST" action="/registernewuser">
-            <input type="text" placeholder="Email" name="newuserid" />
-            <br>
-            <br>
-            <input type="password" placeholder="Password" name="newpassword" />
-            <br>
-            <br>
-            <input type="submit" value="Register Me!" class="btn btn-primary  w-auto m-3" />
-            <br>
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-            {% for message in messages %}
-            <b>
-                <p class="errormessage">{{message}}</p>
-            </b>
-            {% endfor %}
-            {% endif %}
-            {% endwith %}
+        <div class="signup-track p-4 my-3">
+            <form method="POST" action="/registernewuser">
+                <input type="text" placeholder="Email" name="newuserid" />
+                <br>
+                <br>
+                <input type="password" placeholder="Password" name="newpassword" />
+                <br>
+                <br>
+                <input type="submit" value="Register Me!" class="btn btn-primary  w-auto m-3" />
+                <br>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                <b>
+                    <p class="errormessage">{{message}}</p>
+                </b>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+        </div>
         </form>
     </center>
+
 
 </div>
 

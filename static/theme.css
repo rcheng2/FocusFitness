@@ -8,6 +8,19 @@ body {
     background-color: rgb(55, 55, 75);
 }
 
+.signup-track {
+    padding-left: 60em;
+    border-radius: 20px;
+    width: 300px;
+
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 3px solid #ccc;
+
+
+}
+
 .workout-box {
     height: 20em;
     margin: auto;

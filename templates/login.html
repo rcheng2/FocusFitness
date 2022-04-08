@@ -14,30 +14,40 @@
 
 <body>
     <div class="loginpage">
+        <br>
+        <br>
+        <br>
+        <br>
         <center>
             <h1>Please enter your credentials:</h1>
             <p>Email & Password Required</p>
-            <form method="POST" action="/loginuser">
-                <input type="text" placeholder="Email" name="userid" />
-                <br>
-                <input type="password" placeholder="Password" name="pwd" />
-                <br>
-                <input type="submit" value="Log in!" class="btn btn-primary  w-auto m-3" />
-            </form>
+            <div class="signup-track p-4 my-3">
+                <form method="POST" action="/loginuser">
+                    <input type="text" placeholder="Email" name="userid" />
+                    <br>
+                    <br>
 
-            <br>
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-            {% for message in messages %}
-            <b>
-                <p class="errormessage">{{message}}</p>
-            </b>
-            {% endfor %}
-            {% endif %}
-            {% endwith %}
-            <br>
-            <form method="POST" action="/signuppage">
-                <input type="submit" value="Click here to sign up" class="btn btn-warning shadow-lg px-4 w-auto" />
+                    <input type="password" placeholder="Password" name="pwd" />
+                    <br>
+                    <br>
+
+                    <input type="submit" value="Log in!" class="btn btn-primary shadow-lg w-auto m-3" />
+                </form>
+
+                <br>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                <b>
+                    <p class="errormessage">{{message}}</p>
+                </b>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+
+                <form method="POST" action="/signuppage">
+                    <input type="submit" value="Click here to sign up" class="btn btn-warning shadow-lg w-auto" />
+            </div>
             </form>
         </center>
     </div>
