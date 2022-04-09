@@ -11,7 +11,7 @@ To get this web-app off the ground we used Python/Flask for the backend alongsid
 This wasn't an easy project to get off the ground at all, and like every other group we ran into some minor bumps along the road. First getting all of our seperate parts together to merge was kind of a hassle, this is our first time working together so we had to make sure that everything seperate part that we did wouldn't break everything when merging. We used a good amount of pull-requests and took our time with these things to finally achieve a successful merge. 
 
 ## Unit Test Issues
-For the unit tests it depends on an .env file with the DATABASE_URL="" and SECRET_KEY="", and since that is something we don't want on github. We chose not to run the unit tests on github actions but instead on our local devices by running the command python3 unit_test.py
+For the unit tests it depends on an .env file with the DATABASE_URL="" and SECRET_KEY="", and since that is something we don't want on github. We chose not to run the unit tests on github actions but instead on our local devices by running the command python3 unit_test.py.
 
 ## Setup Instructions
 1. `pip3 install -r requirements.txt`
