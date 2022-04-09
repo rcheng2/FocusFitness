@@ -188,7 +188,7 @@ def calculate():
         # pylint: disable=no-member
         db.session.add(new_record)
         db.session.commit()
-        
+
         return flask.render_template(
             "home.html", calories_burned=calories_burned, quote=get_quote(), currentuser=currentuser
         )
