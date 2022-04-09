@@ -193,7 +193,7 @@ def calculate():
             "home.html", calories_burned=calories_burned, quote=get_quote(), currentuser=currentuser
         )
 
-    return flask.render_template("home.html", quote=get_quote()),currentuser=currentuser
+    return flask.render_template("home.html", quote=get_quote(),currentuser=currentuser)
 
 
 if __name__ == "__main__":
