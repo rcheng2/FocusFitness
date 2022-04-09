@@ -1,7 +1,6 @@
 """
 Quotes Generator
 """
-import json
 import requests
 
 
