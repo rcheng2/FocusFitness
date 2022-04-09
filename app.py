@@ -87,13 +87,6 @@ def signup():
     return flask.render_template("signup.html")
 
 
-@app.route("/main")
-@login_required
-def main():
-    currentuser = current_user.username
-    return flask.render_template("index.html", currentuser=currentuser)
-
-
 @app.route("/registernewuser", methods=["POST"])
 def registernewuser():
     try:
@@ -156,18 +149,8 @@ def index():
     quote = get_quote()
     currentuser = current_user.username
     return flask.render_template(
-        "home.html", quote=get_quote(), currentuser=currentuser
+        "home.html", quote=quote, currentuser=currentuser
     )
-
-
-# @app.route("/home")
-# def home():
-#     """Returns quote from api"""
-#     quote = get_quote()
-#     return render_template(
-#         "home.html",
-#         quote=get_quote(),
-#     )
 
 
 @app.errorhandler(404)
@@ -186,7 +169,7 @@ def workouts():
     )
 
 
-@app.route("/calculate", methods=["POST"])
+@app.route("/calculate", methods=["POST", "GET"])
 def calculate():
     """Route to calculate calories burned and write to database"""
     if flask.request.method == "POST":
