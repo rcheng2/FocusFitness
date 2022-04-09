@@ -162,6 +162,7 @@ def workouts():
 @app.route("/calculate", methods=["POST", "GET"])
 def calculate():
     """Route to calculate calories burned and write to database"""
+    currentuser = current_user.username
     if flask.request.method == "POST":
         duration = int(flask.request.values.get("duration"))
         weight = int(flask.request.values.get("weight"))
@@ -187,12 +188,12 @@ def calculate():
         # pylint: disable=no-member
         db.session.add(new_record)
         db.session.commit()
-
+        
         return flask.render_template(
-            "home.html", calories_burned=calories_burned, quote=get_quote()
+            "home.html", calories_burned=calories_burned, quote=get_quote(), currentuser=currentuser
         )
 
-    return flask.render_template("home.html", quote=get_quote())
+    return flask.render_template("home.html", quote=get_quote()),currentuser=currentuser
 
 
 if __name__ == "__main__":
