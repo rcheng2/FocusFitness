@@ -10,9 +10,13 @@ from flask_login import UserMixin
 
 db = SQLAlchemy()
 
-class Record(db.Model):
-    """ Table for exercise records """
+# pylint: disable=too-few-public-methods
 
+
+class Record(db.Model):
+    """Table for exercise records"""
+
+    # pylint: disable=no-member
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80))
     duration = db.Column(db.Integer)
@@ -22,7 +26,9 @@ class Record(db.Model):
 
 
 class User(UserMixin, db.Model):
+    """Contains table of our users"""
+
+    # pylint: disable=no-member
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(200))
-
