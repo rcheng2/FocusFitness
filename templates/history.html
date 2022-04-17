@@ -12,7 +12,7 @@
     <h1>Previous Workouts</h1>
     <table>
         <tr>
-            <th>Timestamp (under construction)</th>
+            <th>Date</th>
             <th>Duration (minutes)</th>
             <th>Weight (kilos) </th>
             <th>Exercise Type</th>
@@ -20,7 +20,7 @@
         </tr>
         {% for i in range(num_workouts) %}
         <tr>
-            <td>Under construction</td>
+            <td>{{prev_workouts[i].timestamp.strftime("%B %d, %Y")}}</td>
             <td>{{prev_workouts[i].duration}}</td>
             <td>{{prev_workouts[i].weight}}</td>
             <td>{{prev_workouts[i].exercise_type}}</td>

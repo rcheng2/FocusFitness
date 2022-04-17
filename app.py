@@ -3,7 +3,7 @@ import os
 import hashlib
 import flask
 from dotenv import find_dotenv, load_dotenv
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template
 
 
 # imports for login
@@ -15,15 +15,12 @@ from flask_login import (
     login_required,
 )
 from quotes import get_quote
-from database import Record, User, db, RecordSchema
+from database import Record, User, db
 
 
 load_dotenv(find_dotenv())
 
-
-# from database import db, Users, Record
-
-app = Flask(__name__)
+app = Flask(__name__)  # pylint: disable= invalid-name
 app.secret_key = os.getenv("app.secret_key")
 app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
@@ -31,7 +28,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 # initializing login manager
-login_manager = LoginManager()
+login_manager = LoginManager() # pylint: disable= invalid-name
 login_manager.init_app(app)
 
 
@@ -156,7 +153,9 @@ def page_not_found(error):
 @app.route("/workouts")
 def workouts():
     """Returns login screen"""
-    return flask.render_template("workouts.html",)
+    return flask.render_template(
+        "workouts.html",
+    )
 
 
 @app.route("/calculate", methods=["POST", "GET"])
@@ -190,23 +189,29 @@ def calculate():
         db.session.commit()
 
         return flask.render_template(
-            "home.html", calories_burned=calories_burned, quote=get_quote(), currentuser=currentuser
+            "home.html",
+            calories_burned=calories_burned,
+            quote=get_quote(),
+            currentuser=currentuser,
         )
 
-    return flask.render_template("home.html", quote=get_quote(),currentuser=currentuser)
+    return flask.render_template(
+        "home.html", quote=get_quote(), currentuser=currentuser
+    )
 
-@app.route("/history", methods=['POST', 'GET'])
+
+@app.route("/history", methods=["POST", "GET"])
 @login_required
 def load_history():
-    """ Route to load previous workouts """
+    """Route to load previous workouts"""
+
     username = current_user.username
     prev_workouts = Record.query.filter_by(username=username).all()
     num_workouts = len(prev_workouts)
-    record_schema = RecordSchema(many=True)
-    history = record_schema.dump(prev_workouts)
-    print(prev_workouts)
-    return flask.render_template("history.html",
-    prev_workouts=prev_workouts, num_workouts=num_workouts)
+
+    return flask.render_template(
+        "history.html", prev_workouts=prev_workouts, num_workouts=num_workouts
+    )
 
 
 if __name__ == "__main__":
