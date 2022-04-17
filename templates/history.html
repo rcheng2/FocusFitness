@@ -10,15 +10,24 @@
 
 <body>
     <h1>Previous Workouts</h1>
-    <ol>
-
+    <table>
+        <tr>
+            <th>Timestamp (under construction)</th>
+            <th>Duration (minutes)</th>
+            <th>Weight (kilos) </th>
+            <th>Exercise Type</th>
+            <th>Calories burned (kcal)</th>
+        </tr>
         {% for i in range(num_workouts) %}
-
-        <li><b>{{previous_workouts[i].calories_burned}}</b></li>
-
+        <tr>
+            <td>Under construction</td>
+            <td>{{prev_workouts[i].duration}}</td>
+            <td>{{prev_workouts[i].weight}}</td>
+            <td>{{prev_workouts[i].exercise_type}}</td>
+            <td>{{prev_workouts[i].calories_burned}}</td>
+        </tr>
         {% endfor %}
-
-    </ol>
+    </table>
 </body>
 
 </html>
