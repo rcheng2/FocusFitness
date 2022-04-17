@@ -3,7 +3,7 @@ import os
 import hashlib
 import flask
 from dotenv import find_dotenv, load_dotenv
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 
 
 # imports for login
@@ -15,7 +15,7 @@ from flask_login import (
     login_required,
 )
 from quotes import get_quote
-from database import Record, User, db
+from database import Record, User, db, RecordSchema
 
 
 load_dotenv(find_dotenv())
@@ -178,7 +178,7 @@ def calculate():
         calories_burned = duration * (met * 3.5 * weight) / 200
 
         new_record = Record(
-            username="username",
+            username=currentuser,
             duration=duration,
             weight=weight,
             exercise_type=exercise_type,
@@ -201,10 +201,12 @@ def load_history():
     """ Route to load previous workouts """
     username = current_user.username
     prev_workouts = Record.query.filter_by(username=username).all()
+    num_workouts = len(prev_workouts)
     record_schema = RecordSchema(many=True)
     history = record_schema.dump(prev_workouts)
-
-    return jsonify(history)
+    print(prev_workouts)
+    return flask.render_template("history.html",
+    prev_workouts=prev_workouts, num_workouts=num_workouts)
 
 
 if __name__ == "__main__":
