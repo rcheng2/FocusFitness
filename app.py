@@ -195,6 +195,17 @@ def calculate():
 
     return flask.render_template("home.html", quote=get_quote(),currentuser=currentuser)
 
+@app.route("/history", methods=['POST', 'GET'])
+@login_required
+def load_history():
+    """ Route to load previous workouts """
+    username = current_user.username
+    prev_workouts = Record.query.filter_by(username=username).all()
+    record_schema = RecordSchema(many=True)
+    history = record_schema.dump(prev_workouts)
+
+    return jsonify(history)
+
 
 if __name__ == "__main__":
     app.run(
