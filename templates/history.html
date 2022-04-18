@@ -27,8 +27,8 @@
             <td>{{prev_workouts[i].weight}}</td>
             <td>{{prev_workouts[i].exercise_type}}</td>
             <td>{{prev_workouts[i].calories_burned}}</td>
-            <td><a href="{{url_for('modify', id=prev_workouts[i].id)}}">Edit</a></td>
-            <td><a href="{{url_for('delete', id=prev_workouts[i].id)}}">Delete</a></td>
+            <td><a href="{{url_for('modify', workout_id=prev_workouts[i].id)}}">Edit</a></td>
+            <td><a href="{{url_for('delete', workout_id=prev_workouts[i].id)}}">Delete</a></td>
         </tr>
         {% endfor %}
     </table>

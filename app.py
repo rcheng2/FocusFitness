@@ -215,55 +215,55 @@ def load_history():
 
 @app.route("/delete/<int:id>", methods=["POST", "GET"])
 @login_required
-def delete(id):
+def delete(workout_id):
     """ Route to delete a previous workout """
-    
-    Record.query.filter_by(id=id).delete()
-    db.session.commit()
-    
+
+    Record.query.filter_by(id=workout_id).delete()
+    db.session.commit() # pylint: disable=no-member
+
     username = current_user.username
     prev_workouts = Record.query.filter_by(username=username).all()
     num_workouts = len(prev_workouts)
-    
+
     return render_template("history.html", prev_workouts=prev_workouts,
     num_workouts=num_workouts)
-    
+
 @app.route("/modify/<int:id>", methods=["POST", "GET"])
 @login_required
-def modify(id):
+def modify(workout_id):
     """ Route to edit a previous workout """
-    workout = Record.query.filter_by(id=id).first()
-    
+    workout = Record.query.filter_by(id=workout_id).first()
+
     return render_template("modify.html", workout=workout)
 
 @app.route("/edit", methods=["POST", "GET"])
 @login_required
 def edit():
     """ Route to edit a previous workout """
-    id = request.form.get("id")
+    workout_id = request.form.get("id")
     exercise_type = request.form.get("exercise_type")
     duration = int(request.form.get("duration"))
     weight = int(request.form.get("weight"))
-    
+
     if exercise_type == "cardio":
-            met = 7
+        met = 7
     elif exercise_type == "weightlifting":
         met = 5
     else:
         met = 3
 
     calories_burned = duration * (met * 3.5 * weight) / 200
-    
-    workout = Record.query.filter_by(id=id).first()
+
+    workout = Record.query.filter_by(id=workout_id).first()
     workout.duration = duration
     workout.weight = weight
     workout.calories_burned = calories_burned
-    db.session.commit()
-    
+    db.session.commit() # pylint: disable=no-member
+
     username = current_user.username
     prev_workouts = Record.query.filter_by(username=username).all()
     num_workouts = len(prev_workouts)
-    
+
     return render_template("history.html", prev_workouts=prev_workouts,
     num_workouts=num_workouts)
 
