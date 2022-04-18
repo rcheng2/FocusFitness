@@ -3,7 +3,7 @@ import os
 import hashlib
 import flask
 from dotenv import find_dotenv, load_dotenv
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 
 # imports for login
@@ -217,12 +217,38 @@ def load_history():
 @login_required
 def delete(id):
     """ Route to delete a previous workout """
+    
+    Record.query.filter_by(id=id).delete()
+    db.session.commit()
+    
     username = current_user.username
     prev_workouts = Record.query.filter_by(username=username).all()
     num_workouts = len(prev_workouts)
     
-    delete_record = Record.query.filter_by(id=id).delete()
+    return render_template("history.html", prev_workouts=prev_workouts,
+    num_workouts=num_workouts)
+    
+@app.route("/modify/<int:id>", methods=["POST", "GET"])
+@login_required
+def modify(id):
+    """ Route to edit a previous workout """
+    workout = Record.query.filter_by(id=id).first()
+    
+    return render_template("modify.html", workout=workout)
+
+@app.route("/edit", methods=["POST", "GET"])
+@login_required
+def edit():
+    """ Route to edit a previous workout """
+    id = request.form.get("id")
+    workout = Record.query.filter_by(id=id).first()
+    workout.duration = request.form.get("duration")
+    workout.weight = request.form.get("weight")
     db.session.commit()
+    
+    username = current_user.username
+    prev_workouts = Record.query.filter_by(username=username).all()
+    num_workouts = len(prev_workouts)
     
     return render_template("history.html", prev_workouts=prev_workouts,
     num_workouts=num_workouts)
