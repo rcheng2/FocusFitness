@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Workout</title>
+</head>
+
+<body>
+    <form action="{{ url_for('edit')}}" method="POST">
+        <h5>Update Workout Details</h5>
+
+        <input type="hidden" name="id" value={{workout.id}}>
+        <input type="hidden" name="exercise_type" value="{{workout.exercise_type}}" />
+
+        <input type="number" name="duration" placeholder="Enter duration in minutes" value={{workout.duration}}>
+
+        <input type="number" name="weight" placeholder="Enter weight in kilos" value={{workout.weight}}>
+
+        <input type="submit" value="Submit" />
+    </form>
+
+</body>
+
+</html>
