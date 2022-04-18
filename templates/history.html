@@ -17,6 +17,7 @@
             <th>Weight (kilos) </th>
             <th>Exercise Type</th>
             <th>Calories burned (kcal)</th>
+            <th>Modify / Delete</th>
         </tr>
         {% for i in range(num_workouts) %}
         <tr>
@@ -25,6 +26,7 @@
             <td>{{prev_workouts[i].weight}}</td>
             <td>{{prev_workouts[i].exercise_type}}</td>
             <td>{{prev_workouts[i].calories_burned}}</td>
+            <td><a href="{{url_for('delete', id=prev_workouts[i].id)}}">Delete</a></td>
         </tr>
         {% endfor %}
     </table>

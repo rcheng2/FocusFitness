@@ -213,6 +213,19 @@ def load_history():
         "history.html", prev_workouts=prev_workouts, num_workouts=num_workouts
     )
 
+@app.route("/delete/<int:id>", methods=["POST", "GET"])
+@login_required
+def delete(id):
+    """ Route to delete a previous workout """
+    username = current_user.username
+    prev_workouts = Record.query.filter_by(username=username).all()
+    num_workouts = len(prev_workouts)
+    
+    delete_record = Record.query.filter_by(id=id).delete()
+    db.session.commit()
+    
+    return render_template("history.html", prev_workouts=prev_workouts,
+    num_workouts=num_workouts)
 
 if __name__ == "__main__":
     app.run(
