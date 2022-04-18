@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previous Workouts</title>
+</head>
+
+<body>
+    <h1>Previous Workouts</h1>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Duration (minutes)</th>
+            <th>Weight (kilos) </th>
+            <th>Exercise Type</th>
+            <th>Calories burned (kcal)</th>
+        </tr>
+        {% for i in range(num_workouts) %}
+        <tr>
+            <td>{{prev_workouts[i].timestamp.strftime("%B %d, %Y")}}</td>
+            <td>{{prev_workouts[i].duration}}</td>
+            <td>{{prev_workouts[i].weight}}</td>
+            <td>{{prev_workouts[i].exercise_type}}</td>
+            <td>{{prev_workouts[i].calories_burned}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>

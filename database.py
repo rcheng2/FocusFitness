@@ -3,12 +3,11 @@ Database for reviews
 ref:
 https://overiq.com/flask-101/authentication-in-flask/
 """
-
+from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 
-
-db = SQLAlchemy()
+db = SQLAlchemy() # pylint: disable= invalid-name
 
 # pylint: disable=too-few-public-methods
 
@@ -18,6 +17,7 @@ class Record(db.Model):
 
     # pylint: disable=no-member
     id = db.Column(db.Integer, primary_key=True)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
     username = db.Column(db.String(80))
     duration = db.Column(db.Integer)
     weight = db.Column(db.Integer)
