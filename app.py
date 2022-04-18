@@ -241,9 +241,23 @@ def modify(id):
 def edit():
     """ Route to edit a previous workout """
     id = request.form.get("id")
+    exercise_type = request.form.get("exercise_type")
+    duration = int(request.form.get("duration"))
+    weight = int(request.form.get("weight"))
+    
+    if exercise_type == "cardio":
+            met = 7
+    elif exercise_type == "weightlifting":
+        met = 5
+    else:
+        met = 3
+
+    calories_burned = duration * (met * 3.5 * weight) / 200
+    
     workout = Record.query.filter_by(id=id).first()
-    workout.duration = request.form.get("duration")
-    workout.weight = request.form.get("weight")
+    workout.duration = duration
+    workout.weight = weight
+    workout.calories_burned = calories_burned
     db.session.commit()
     
     username = current_user.username
