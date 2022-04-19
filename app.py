@@ -14,7 +14,7 @@ from flask_login import (
     logout_user,
     login_required,
 )
-from quotes import get_quote
+from helper_functions import get_calories_burned, get_quote
 from database import Record, User, db
 
 
@@ -150,14 +150,6 @@ def page_not_found(error):
     return render_template("404.html"), 404
 
 
-@app.route("/workouts")
-def workouts():
-    """Returns login screen"""
-    return flask.render_template(
-        "workouts.html",
-    )
-
-
 @app.route("/calculate", methods=["POST", "GET"])
 def calculate():
     """Route to calculate calories burned and write to database"""
@@ -167,14 +159,7 @@ def calculate():
         weight = int(flask.request.values.get("weight"))
         exercise_type = flask.request.values.get("exercise_type")
 
-        if exercise_type == "cardio":
-            met = 7
-        elif exercise_type == "weightlifting":
-            met = 5
-        else:
-            met = 3
-
-        calories_burned = duration * (met * 3.5 * weight) / 200
+        calories_burned = get_calories_burned(duration, weight, exercise_type)
 
         new_record = Record(
             username=currentuser,
@@ -244,15 +229,7 @@ def edit():
     exercise_type = request.form.get("exercise_type")
     duration = int(request.form.get("duration"))
     weight = int(request.form.get("weight"))
-
-    if exercise_type == "cardio":
-        met = 7
-    elif exercise_type == "weightlifting":
-        met = 5
-    else:
-        met = 3
-
-    calories_burned = duration * (met * 3.5 * weight) / 200
+    calories_burned = get_calories_burned(duration, weight, exercise_type)
 
     workout = Record.query.filter_by(id=workout_id).first()
     workout.duration = duration
