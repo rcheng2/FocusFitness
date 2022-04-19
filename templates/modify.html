@@ -10,16 +10,53 @@
 
 <body>
     <form action="{{ url_for('edit')}}" method="POST">
-        <h5>Update Workout Details</h5>
+        <table>
+            <th colspan="2">Update Workout Details</th>
+            <input type="hidden" name="id" value={{workout.id}}>
+            <tr>
+                <th>
+                    Date:
+                </th>
+                <td>
+                    {{workout.timestamp.strftime("%B %d, %Y")}}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Duration:
+                </th>
+                <td>
+                    <input type="number" step="1" pattern="\d*" name="duration" placeholder="Enter updated duration in minutes"
+                        value={{workout.duration}}>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Weight:
+                </th>
+                <td>
+                    <input type="number" step="1" pattern="\d*"  name="weight" placeholder="Enter updated weight in kilos"
+                        value={{workout.weight}}>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Exercise type:
+                </th>
+                <td>
+                    {{workout.exercise_type}}
+                </td>
+            </tr>
+            <input type="hidden" name="exercise_type" value="{{workout.exercise_type}}" />
+            <tr>
+                <th>Calories burned:</th>
+                <td>{{workout.calories_burned}}</td>
+            </tr>
+            <tr>
+                <th span="2"><input type="submit" value="Submit" /></th>
+            </tr>
 
-        <input type="hidden" name="id" value={{workout.id}}>
-        <input type="hidden" name="exercise_type" value="{{workout.exercise_type}}" />
-
-        <input type="number" name="duration" placeholder="Enter duration in minutes" value={{workout.duration}}>
-
-        <input type="number" name="weight" placeholder="Enter weight in kilos" value={{workout.weight}}>
-
-        <input type="submit" value="Submit" />
+        </table>
     </form>
 
 </body>

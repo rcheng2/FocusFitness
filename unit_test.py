@@ -4,7 +4,7 @@ Unit Tests
 import unittest
 from unittest.mock import MagicMock, patch
 from app import app
-from quotes import get_quote
+from helper_functions import get_quote
 
 
 class TestFlaskRoutes(unittest.TestCase):
