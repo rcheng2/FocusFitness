@@ -28,7 +28,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 # initializing login manager
-login_manager = LoginManager() # pylint: disable= invalid-name
+login_manager = LoginManager()  # pylint: disable= invalid-name
 login_manager.init_app(app)
 
 
@@ -154,7 +154,7 @@ def page_not_found(error):
 def calculate():
     """Route to calculate calories burned and save workout to database"""
     currentuser = current_user.username
-    quote=get_quote()
+    quote = get_quote()
     if flask.request.method == "POST":
         duration = int(flask.request.values.get("duration"))
         weight = int(flask.request.values.get("weight"))
@@ -182,9 +182,7 @@ def calculate():
             currentuser=currentuser,
         )
 
-    return flask.render_template(
-        "home.html", quote=quote, currentuser=currentuser
-    )
+    return flask.render_template("home.html", quote=quote, currentuser=currentuser)
 
 
 @app.route("/history", methods=["POST", "GET"])
@@ -193,40 +191,48 @@ def load_history():
     """Route to load previous workouts"""
 
     username = current_user.username
-    prev_workouts = Record.query.filter_by(username=username).order_by(Record.timestamp.asc()).all()
+    prev_workouts = (
+        Record.query.filter_by(username=username).order_by(Record.timestamp.asc()).all()
+    )
     num_workouts = len(prev_workouts)
 
     return flask.render_template(
         "history.html", prev_workouts=prev_workouts, num_workouts=num_workouts
     )
 
+
 @app.route("/delete/<int:workout_id>", methods=["POST", "GET"])
 @login_required
 def delete(workout_id):
-    """ Route to delete a previous workout from database"""
+    """Route to delete a previous workout from database"""
 
     Record.query.filter_by(id=workout_id).delete()
-    db.session.commit() # pylint: disable=no-member
+    db.session.commit()  # pylint: disable=no-member
 
     username = current_user.username
-    prev_workouts = Record.query.filter_by(username=username).order_by(Record.timestamp.asc()).all()
+    prev_workouts = (
+        Record.query.filter_by(username=username).order_by(Record.timestamp.asc()).all()
+    )
     num_workouts = len(prev_workouts)
 
-    return render_template("history.html", prev_workouts=prev_workouts,
-    num_workouts=num_workouts)
+    return render_template(
+        "history.html", prev_workouts=prev_workouts, num_workouts=num_workouts
+    )
+
 
 @app.route("/modify/<int:workout_id>", methods=["POST", "GET"])
 @login_required
 def modify(workout_id):
-    """ Route to load a page to edit selected workout """
+    """Route to load a page to edit selected workout"""
     workout = Record.query.filter_by(id=workout_id).first()
 
     return render_template("modify.html", workout=workout)
 
+
 @app.route("/edit", methods=["POST", "GET"])
 @login_required
 def edit():
-    """ Route to edit selected previous workout
+    """Route to edit selected previous workout
     and update row in database"""
     workout_id = request.form.get("id")
     exercise_type = request.form.get("exercise_type")
@@ -238,14 +244,18 @@ def edit():
     workout.duration = duration
     workout.weight = weight
     workout.calories_burned = calories_burned
-    db.session.commit() # pylint: disable=no-member
+    db.session.commit()  # pylint: disable=no-member
 
     username = current_user.username
-    prev_workouts = Record.query.filter_by(username=username).order_by(Record.timestamp.asc()).all()
+    prev_workouts = (
+        Record.query.filter_by(username=username).order_by(Record.timestamp.asc()).all()
+    )
     num_workouts = len(prev_workouts)
 
-    return render_template("history.html", prev_workouts=prev_workouts,
-    num_workouts=num_workouts)
+    return render_template(
+        "history.html", prev_workouts=prev_workouts, num_workouts=num_workouts
+    )
+
 
 if __name__ == "__main__":
     app.run(

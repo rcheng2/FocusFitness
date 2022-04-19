@@ -13,18 +13,34 @@ def get_quote():
     quote = data[0]["q"]
     return quote
 
+
 def get_calories_burned(duration, weight, exercise_type):
-    """ function to calculate calories burned"""
-    super_vigorous_exercise = ["Running", "Swimming",
-    "Crossfit", "Rowing", "Mountain Biking",
-    "Rock Climbing", "Gymnastics", "Rugby", "Football",
-    "Soccer", "Water Polo", "Wrestling", "Martial arts",
-    "Calisthenics"]
-    vigorous_exercise = ["Beach Volleyball",
-    "Cycling", "Lacrosse", "Skateboarding", "Ultimate Frisbee",
-    "Weightlifting"]
-    moderate_exercise = ["Jogging", "Jump Rope", "Baseball",
-    "Yoga", "Dancing"]
+    """function to calculate calories burned"""
+    super_vigorous_exercise = [
+        "Running",
+        "Swimming",
+        "Crossfit",
+        "Rowing",
+        "Mountain Biking",
+        "Rock Climbing",
+        "Gymnastics",
+        "Rugby",
+        "Football",
+        "Soccer",
+        "Water Polo",
+        "Wrestling",
+        "Martial arts",
+        "Calisthenics",
+    ]
+    vigorous_exercise = [
+        "Beach Volleyball",
+        "Cycling",
+        "Lacrosse",
+        "Skateboarding",
+        "Ultimate Frisbee",
+        "Weightlifting",
+    ]
+    moderate_exercise = ["Jogging", "Jump Rope", "Baseball", "Yoga", "Dancing"]
     if exercise_type in super_vigorous_exercise:
         met = 7
     elif exercise_type in vigorous_exercise:
