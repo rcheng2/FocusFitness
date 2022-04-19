@@ -213,7 +213,7 @@ def load_history():
         "history.html", prev_workouts=prev_workouts, num_workouts=num_workouts
     )
 
-@app.route("/delete/<int:id>", methods=["POST", "GET"])
+@app.route("/delete/<int:workout_id>", methods=["POST", "GET"])
 @login_required
 def delete(workout_id):
     """ Route to delete a previous workout """
@@ -228,7 +228,7 @@ def delete(workout_id):
     return render_template("history.html", prev_workouts=prev_workouts,
     num_workouts=num_workouts)
 
-@app.route("/modify/<int:id>", methods=["POST", "GET"])
+@app.route("/modify/<int:workout_id>", methods=["POST", "GET"])
 @login_required
 def modify(workout_id):
     """ Route to edit a previous workout """
