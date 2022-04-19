@@ -21,8 +21,6 @@ from database import Record, User, db
 load_dotenv(find_dotenv())
 
 app = Flask(__name__)  # pylint: disable= invalid-name
-app.secret_key = os.getenv("app.secret_key")
-app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
