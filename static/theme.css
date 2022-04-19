@@ -37,6 +37,18 @@ body {
 
 }
 
+.previous-workout {
+    height: auto;
+    border-radius: 20px;
+    background-color: rgb(211, 211, 228);
+}
+
+.edit-workout {
+    height: auto;
+    border-radius: 25px;
+    background-color: rgb(211, 211, 228);
+}
+
 .recent-workout {
     height: auto;
     border-radius: 20px;
