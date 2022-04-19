@@ -1,14 +1,18 @@
+""" Python script to run tests """
 import os
-os.environ['DATABASE_URL'] = 'sqlite://'  # use an in-memory database for tests
-
 import unittest
 from flask import current_app
+os.environ["DATABASE_URL"] = "sqlite://"  # use an in-memory database for tests
 from app import app
 from database import db
 
+
+
+
 class TestWebApp(unittest.TestCase):
+    """ Tests for the web app """
     def setUp(self):
-        """ Set up testing environment. Create sqlite db
+        """Set up testing environment. Create sqlite db
         to test db in memory"""
         self.app = app
         self.appctx = self.app.app_context()
@@ -17,7 +21,7 @@ class TestWebApp(unittest.TestCase):
         self.client = self.app.test_client()
 
     def tearDown(self):
-        """ Clear testing environment. """
+        """Clear testing environment."""
         db.drop_all()
         self.appctx.pop()
         self.app = None
@@ -25,14 +29,16 @@ class TestWebApp(unittest.TestCase):
         self.client = None
 
     def test_app(self):
-        """ Test if app is configured properly """
+        """Test if app is configured properly"""
         assert self.app is not None
         assert current_app == self.app
-        
+
     def test_home_page_redirect(self):
-        response = self.client.get('/', follow_redirects=True)
+        """ Tests if app '/' route works as intended """
+        response = self.client.get("/index", follow_redirects=True)
         assert response.status_code == 200
-        assert response.request.path == '/auth/login'
-        
+        assert response.request.path == "/loginuser"
+
+
 if __name__ == "__main__":
     unittest.main()
