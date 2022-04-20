@@ -7,21 +7,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <!-- calendar -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var temp = event.title;
+            console.log(temp);
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                events: [
+                    {% for row in events %}{ id : '{{row.id}}', title : '{{row.title}}', allDay: true, start : '{{row.timestamp}}', end : '{{row.timestamp}}', url :'/history'}, {% endfor %}  
+                ]
+            });
+            calendar.render();
+            
+        });
+    </script>
+    <!-- -->
     <link rel="stylesheet" href="/static/theme.css">
     <title>Focus Fitness</title>
 </head>
 
 <body>
-
-
     <div class="section shadow bg-dark-light">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark-light">
                 <div class="container-fluid">
                     <a class="navbar-brand fs-2 font-weight-bold" href="#">Focus Fitness</a>
-
-
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -37,36 +51,24 @@
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="/getinput">Workouts</a>
                             </li>
-
                             <li class="nav-item">
                                 <form method="POST" action="/logoff">
-
-
-                                    <input type="submit" value="Log Out!" a
-                                        class="nav-link btn btn-outline-danger text-danger"></a>
+                                    <input type="submit" value="Log Out!" a class="nav-link btn btn-outline-danger text-danger"></input>
                                 </form>
                             </li>
                         </ul>
                     </div>
-
                 </div>
-
             </nav>
-
         </div>
-
     </div>
-
     <div class="section">
         <div style="margin-left: auto;margin-right: auto;text-align:center">
             <a class="navbar-brand fs-2 font-weight-bold" href="/index"> Welcome {{currentuser}} </a>
         </div>
-
-
         <div class="container" style="height: auto;">
             <div class="row box">
                 <input type="button" class="btn btn-primary Calendar w-auto m-3" value="Calendar">
-
                 <div class="col-lg-6">
                     <div class="workout-box p-3 ">
                         <h3 class="mx-2">Workouts</h3>
@@ -75,64 +77,84 @@
                             <div class="d-flex flex-column justify-content-center shadow-lg">
                                 <div class="d-flex mx-2">
                                     <form action="/calculate" method="POST">
+                                        {% if request.endpoint == 'calculate' %}
+                                        <h3 class="text-center my-2 text-white">{{display_calories_burned}}</h3>
+                                        {% endif %}
                                         <h5 class="text-white">Input exercises </h5>
                                         <div class="dropdown mx-3">
                                             <select id="exercise_type" name="exercise_type">
-                                                <option value="cardio">Cardio</option>
-                                                <option value="weightlifting">Lifting Weights</option>
-                                                <option value="swimming">Swimming</option>
+                                                <option value="Running">Running</option>
+                                                <option value="Swimming">Swimming</option>
+                                                <option value="Crossfit">Crossfit</option>
+                                                <option value="Rowing">Rowing</option>
+                                                <option value="Mountain Biking">Mountain Biking</option>
+                                                <option value="Rock Climbing">Rock Climbing</option>
+                                                <option value="Gymnastics">Gymnastics</option>
+                                                <option value="Rugby">Rugby</option>
+                                                <option value="Football">Football</option>
+                                                <option value="Soccer">Soccer</option>
+                                                <option value="Water Polo">Water Polo</option>
+                                                <option value="Wrestling">Wrestling</option>
+                                                <option value="Martial arts">Martial arts</option>
+                                                <option value="Calisthenics">Calisthenics</option>
+                                                <option value="Beach Volleyball">Beach Volleyball</option>
+                                                <option value="Cycling">Cycling</option>
+                                                <option value="Lacrosse">Lacrosse</option>
+                                                <option value="Skateboarding">Skateboarding</option>
+                                                <option value="Ultimate Frisbee">Ultimate Frisbee</option>
+                                                <option value="Weightlifting">Weightlifting</option>
+                                                <option value="Jogging">Jogging</option>
+                                                <option value="Jump Rope">Jump Rope</option>
+                                                <option value="Baseball">Baseball</option>
+                                                <option value="Yoga">Yoga</option>
+                                                <option value="Dancing">Dancing</option>
+                                                <option value="Walking">Walking</option>
+                                                <option value="Stretching">Stretching</option>
+                                                <option value="Mobility Training">Mobility Training</option>
                                             </select>
                                         </div>
-
                                         <div class="d-flex justify-content-center">
-                                            <input type="number" class="form-control my-3 mx-2 w-75" name="duration"
+                                            <input type="number" step="1" pattern="\d*"
+                                                class="form-control my-3 mx-2 w-75" name="duration"
                                                 placeholder="Time in minutes" required min="1" max="9999" />
-                                            <input type="number" class="form-control my-3 w-75" name="weight"
-                                                placeholder="Weight in Kilos" required min="1" max="9999" />
+                                            <input type="number" step="1" pattern="\d*" class="form-control my-3 w-75"
+                                                name="weight" placeholder="Your weight in Kilos" required min="1"
+                                                max="9999" />
                                         </div>
                                         <div class="row justify-content-center">
                                             <input type="submit" class="btn btn-warning shadow-lg px-4 w-auto"
                                                 value="Save" id="submit">
+                                        </div>
                                     </form>
-                                    <h3 class="text-center my-2 text-white">Calories burned: {{calories_burned}} kcal
-                                    </h3>
                                 </div>
-
-
-
-
                             </div>
                         </div>
                     </div>
-
                 </div>
-
-
+                <div class="col-lg p-5 " style=" background-color: aliceblue; border-radius: 30px;">
+                    <div id="calendar" style="height:20rem; overflow-y: hidden; "></div>
+                </div>
             </div>
         </div>
-
         <br>
         <br>
         <br>
         <br>
         <br>
-
-
+        
+    </div>
+    <div class="section">
         <div class="col-lg-6 d-flex flex-column ">
             <div class="quote-box m-8">
                 <br>
-
                 <h4 class="fw-bold text-primary ">Quote: {{quote}}</h4>
-
-                <button id="submit" input type="submit" class="btn btn-warning shadow-lg px-4 w-auto"
-                    onClick="window.location.reload();">Need more motivation?</button>
-
+                
+                <button id="submit" input type="submit" class="btn btn-warning shadow-lg px-4 w-auto" onClick="window.location.reload();">Need more motivation?</button>
                 </br>
-
             </div>
         </div>
     </div>
-    </div>
+    
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -144,5 +166,4 @@
         crossorigin="anonymous"></script>
 
 </body>
-
 </html>
