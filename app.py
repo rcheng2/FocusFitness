@@ -53,6 +53,12 @@ def hashedpass(ptext):
     return phash
 
 
+@app.route("/cal")
+def cal():
+    """The first screen the user sees"""
+    return flask.render_template("cal.html")
+
+
 @app.route("/")
 def login():
     """The first screen the user sees"""
