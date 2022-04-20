@@ -3,11 +3,9 @@ import os
 import unittest
 from flask import current_app
 os.environ["DATABASE_URL"] = "sqlite://"  # required to be here to use in-memory database for tests
-from app import app
-from database import db
-
-
-
+os.environ["SECRET_KEY"] = "top_secret_key_lol" # same as above
+from app import app # pylint: disable = wrong-import-position
+from database import db # pylint: disable = wrong-import-position
 
 class TestWebApp(unittest.TestCase):
     """ Tests for the web app """
@@ -15,6 +13,7 @@ class TestWebApp(unittest.TestCase):
         """Set up testing environment. Create sqlite db
         to test db in memory"""
         self.app = app
+        self.app.config['WTF_CSRF_ENABLED'] = False
         self.appctx = self.app.app_context()
         self.appctx.push()
         db.create_all()
@@ -35,33 +34,47 @@ class TestWebApp(unittest.TestCase):
         assert current_app == self.app
 
     def test_landing_page(self):
-        """ Tests if landing loads"""
+        """ Tests if landing loads properly"""
         response = self.client.get("/")
         assert response.status_code == 200
-        
+
     def test_signup_form(self):
         """ Tests if signup form has correct components """
         response = self.client.get("/signuppage")
         assert response.status_code == 200
         html  = response.get_data(as_text=True)
-        
+
         assert 'name="newuserid"' in html
         assert 'name="newpassword"' in html
-        
+
     def test_login_form(self):
         """ Tests if login form has correct components """
         response = self.client.get("/")
+        print(response.status_code)
         assert response.status_code == 200
         html  = response.get_data(as_text=True)
-        
+
         assert 'name="userid"' in html
         assert 'name="pwd"' in html
 
-    def test_signup_page(self):
-        """ Test sign up function """
-        response = self.client.get("/", follow_redirects=True)
+    def test_register_and_login_new_user(self):
+        """ Test signing up new user and also logging them in """
+        # register new user below:
+        response = self.client.post("/registernewuser", data={
+            "newuserid": "new_user",
+            "newpassword": "password123"
+        }, follow_redirects=True)
         assert response.status_code == 200
+        assert response.request.path == "/"
 
+        # login in new user
+        response = self.client.post("/loginuser", data={
+            "userid": "new_user",
+            "pwd": "password123"
+        }, follow_redirects=True)
+        assert response.status_code == 200
+        html = response.get_data(as_text=True)
+        assert "Welcome new_user" in html
 
 if __name__ == "__main__":
     unittest.main()

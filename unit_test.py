@@ -4,23 +4,7 @@ Unit Tests
 import unittest
 from unittest.mock import MagicMock, patch
 from app import app
-from flask import current_app
 from helper_functions import get_quote
-
-class TestWebApp(unittest.TestCase):
-    def setUp(self):
-        self.app = app
-        self.appctx = self.app.app_context()
-        self.appctx.push()
-
-    def tearDown(self):
-        self.appctx.pop()
-        self.app = None
-        self.appctx = None
-
-    def test_app(self):
-        assert self.app is not None
-        assert current_app == self.app
 
 class TestFlaskRoutes(unittest.TestCase):
     """Unit tests for selected routes"""

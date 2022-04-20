@@ -28,7 +28,6 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 # initializing login manager
 login_manager = LoginManager()  # pylint: disable= invalid-name
 login_manager.init_app(app)
-login_manager.login_view = "login"
 
 
 if app.config["SQLALCHEMY_DATABASE_URI"].startswith("postgres://"):
