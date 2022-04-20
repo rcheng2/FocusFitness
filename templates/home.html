@@ -13,10 +13,16 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
+            var temp = event.title;
+            console.log(temp);
             var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth'
+                initialView: 'dayGridMonth',
+                events: [
+                    {% for row in events %}{ id : '{{row.id}}', title : '{{row.title}}', allDay: true, start : '{{row.timestamp}}', end : '{{row.timestamp}}', url :'/history'}, {% endfor %}  
+                ]
             });
             calendar.render();
+            
         });
     </script>
     <!-- -->
@@ -142,6 +148,7 @@
             <div class="quote-box m-8">
                 <br>
                 <h4 class="fw-bold text-primary ">Quote: {{quote}}</h4>
+                
                 <button id="submit" input type="submit" class="btn btn-warning shadow-lg px-4 w-auto" onClick="window.location.reload();">Need more motivation?</button>
                 </br>
             </div>

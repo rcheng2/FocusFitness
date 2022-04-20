@@ -15,7 +15,7 @@ from flask_login import (
     login_required,
 )
 from helper_functions import get_calories_burned, get_quote
-from database import Record, User, db
+from database import Record, User, db, Event
 
 
 load_dotenv(find_dotenv())
@@ -41,8 +41,8 @@ if app.config["SQLALCHEMY_DATABASE_URI"].startswith("postgres://"):
 db.init_app(app)
 
 # used to prevent circular imports
-# with app.app_context():
-#     db.create_all()
+with app.app_context():
+    db.create_all()
 
 # All of this is for login and authentication stuff
 def hashedpass(ptext):
@@ -140,7 +140,10 @@ def index():
     """Returns main app page after logging in"""
     quote = get_quote()
     currentuser = current_user.username
-    return flask.render_template("home.html", quote=quote, currentuser=currentuser)
+    events = Event.query.filter_by(username=current_user.username).all()
+    return flask.render_template(
+        "home.html", quote=quote, currentuser=currentuser, events=events
+    )
 
 
 @app.errorhandler(404)
@@ -175,11 +178,23 @@ def calculate():
         db.session.add(new_record)
         db.session.commit()
 
+        new_event = Event(
+            username=currentuser,
+            title=exercise_type,
+        )
+
+        db.session.add(new_event)
+        db.session.commit()
+        events = Event.query.filter_by(username=current_user.username).all()
+        print(events)
+        num_events = len(events)
         return flask.render_template(
             "home.html",
             display_calories_burned=display_calories_burned,
             quote=quote,
             currentuser=currentuser,
+            events=events,
+            num_events=num_events,
         )
 
     return flask.render_template("home.html", quote=quote, currentuser=currentuser)
@@ -207,6 +222,7 @@ def delete(workout_id):
     """Route to delete a previous workout from database"""
 
     Record.query.filter_by(id=workout_id).delete()
+    Event.query.filter_by(id=workout_id).delete()
     db.session.commit()  # pylint: disable=no-member
 
     username = current_user.username
