@@ -1,5 +1,5 @@
 """
-Quotes Generator
+Helper Functions
 """
 import requests
 
