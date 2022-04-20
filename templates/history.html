@@ -59,20 +59,20 @@
         <div class="workout-box p-3 ">
             <div class="previous-workout p-4 my-3">
                 <div class="d-flex flex-column justify-content-center shadow-lg">
-                    <h1>Previous Workouts</h1>
+                    <h1>&nbsp;Previous Workouts</h1>
                     <table>
                         <tr>
-                            <th>Date &nbsp; </th>
-                            <th>Duration(minutes) &nbsp;</th>
-                            <th>Weight (kilos) &nbsp; </th>
-                            <th>Exercise Type &nbsp;</th>
-                            <th>Calories burned (kcal) &nbsp;</th>
-                            <th>&nbsp; &nbsp;Modify &nbsp;</th>
-                            <th>Delete &nbsp;</th>
+                            <th>&nbsp; &nbsp;Date &nbsp; </th>
+                            <th>Duration(minutes) &nbsp; &nbsp;</th>
+                            <th>Weight (kilos) &nbsp; &nbsp;</th>
+                            <th>Exercise Type &nbsp; &nbsp;</th>
+                            <th>Calories burned (kcal) &nbsp; &nbsp;</th>
+                            <th> &nbsp; &nbsp; &nbsp;Modify &nbsp; &nbsp;</th>
+                            <th>&nbsp; Delete &nbsp; &nbsp;</th>
                         </tr>
                         {% for i in range(num_workouts) %}
                         <tr>
-                            <td>{{prev_workouts[i].timestamp.strftime("%B %d, %Y")}}</td>
+                            <td>&nbsp; {{prev_workouts[i].timestamp.strftime("%B %d, %Y")}}</td>
                             <td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;{{prev_workouts[i].duration}}</td>
                             <td>{{prev_workouts[i].weight}}</td>
                             <td>{{prev_workouts[i].exercise_type}}</td>
