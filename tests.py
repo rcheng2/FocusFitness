@@ -38,6 +38,11 @@ class TestWebApp(unittest.TestCase):
         response = self.client.get("/", follow_redirects=True)
         assert response.status_code == 200
 
+    def test_signup_page(self):
+        """ Test sign up function """
+        response = self.client.get("/", follow_redirects=True)
+        assert response.status_code == 200
+
 
 if __name__ == "__main__":
     unittest.main()
