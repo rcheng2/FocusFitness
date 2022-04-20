@@ -34,10 +34,9 @@ class TestWebApp(unittest.TestCase):
         assert current_app == self.app
 
     def test_home_page_redirect(self):
-        """ Tests if app '/' route works as intended """
-        response = self.client.get("/index", follow_redirects=True)
+        """ Tests if landing page works"""
+        response = self.client.get("/", follow_redirects=True)
         assert response.status_code == 200
-        assert response.request.path == "/loginuser"
 
 
 if __name__ == "__main__":
