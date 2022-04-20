@@ -68,7 +68,7 @@
                                     Date:
                                 </th>
                                 <td>
-                                    {{workout.timestamp.strftime("%B %d, %Y")}}
+                                    <input type="datetime-local" name="timestamp" value="{{workout.timestamp.strftime('%Y-%m-%d %H:%M')}}" />
                                 </td>
                             </tr>
                             <tr>
@@ -91,13 +91,41 @@
                             </tr>
                             <tr>
                                 <th>
-                                    Exercise type:
+                                    Exercise type: {{workout.exercise_type}} (Current) 
                                 </th>
                                 <td>
-                                    {{workout.exercise_type}}
+                                    <select id="exercise_type" name="exercise_type">
+                                        <option value="Running">Running</option>
+                                        <option value="Swimming">Swimming</option>
+                                        <option value="Crossfit">Crossfit</option>
+                                        <option value="Rowing">Rowing</option>
+                                        <option value="Mountain Biking">Mountain Biking</option>
+                                        <option value="Rock Climbing">Rock Climbing</option>
+                                        <option value="Gymnastics">Gymnastics</option>
+                                        <option value="Rugby">Rugby</option>
+                                        <option value="Football">Football</option>
+                                        <option value="Soccer">Soccer</option>
+                                        <option value="Water Polo">Water Polo</option>
+                                        <option value="Wrestling">Wrestling</option>
+                                        <option value="Martial arts">Martial arts</option>
+                                        <option value="Calisthenics">Calisthenics</option>
+                                        <option value="Beach Volleyball">Beach Volleyball</option>
+                                        <option value="Cycling">Cycling</option>
+                                        <option value="Lacrosse">Lacrosse</option>
+                                        <option value="Skateboarding">Skateboarding</option>
+                                        <option value="Ultimate Frisbee">Ultimate Frisbee</option>
+                                        <option value="Weightlifting">Weightlifting</option>
+                                        <option value="Jogging">Jogging</option>
+                                        <option value="Jump Rope">Jump Rope</option>
+                                        <option value="Baseball">Baseball</option>
+                                        <option value="Yoga">Yoga</option>
+                                        <option value="Dancing">Dancing</option>
+                                        <option value="Walking">Walking</option>
+                                        <option value="Stretching">Stretching</option>
+                                        <option value="Mobility Training">Mobility Training</option>
+                                    </select>
                                 </td>
                             </tr>
-                            <input type="hidden" name="exercise_type" value="{{workout.exercise_type}}" />
                             <tr>
                                 <th>Calories burned:</th>
                                 <td>{{workout.calories_burned}}</td>

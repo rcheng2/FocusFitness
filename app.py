@@ -150,10 +150,14 @@ def page_not_found(error):
     """error handling; redirect to 404.html"""
     return render_template("404.html"), 404
 
+
 @app.route("/workouts")
 def workouts():
     """Returns login screen"""
-    return flask.render_template("workouts.html",)
+    return flask.render_template(
+        "workouts.html",
+    )
+
 
 @app.route("/calculate", methods=["POST", "GET"])
 def calculate():
@@ -217,6 +221,7 @@ def load_history():
         "history.html", prev_workouts=prev_workouts, num_workouts=num_workouts
     )
 
+
 @app.route("/getinput", methods=["GET"])
 @login_required
 def getinput():
@@ -243,6 +248,7 @@ def vworkouts():
     workout = my_dict.get(selection)
 
     return flask.render_template("vworkouts.html", video=workout, workoutType=selection)
+
 
 @app.route("/delete/<int:workout_id>", methods=["POST", "GET"])
 @login_required
@@ -279,6 +285,7 @@ def edit():
     """Route to edit selected previous workout
     and update row in database"""
     workout_id = request.form.get("id")
+    timestamp = request.form.get("timestamp")
     exercise_type = request.form.get("exercise_type")
     duration = int(request.form.get("duration"))
     weight = int(request.form.get("weight"))
@@ -287,6 +294,8 @@ def edit():
     workout = Record.query.filter_by(id=workout_id).first()
     workout.duration = duration
     workout.weight = weight
+    workout.exercise_type = exercise_type
+    workout.timestamp = timestamp
     workout.calories_burned = calories_burned
     db.session.commit()  # pylint: disable=no-member
 
