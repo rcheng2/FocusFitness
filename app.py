@@ -150,6 +150,10 @@ def page_not_found(error):
     """error handling; redirect to 404.html"""
     return render_template("404.html"), 404
 
+@app.route("/workouts")
+def workouts():
+    """Returns login screen"""
+    return flask.render_template("workouts.html",)
 
 @app.route("/calculate", methods=["POST", "GET"])
 def calculate():
@@ -213,6 +217,32 @@ def load_history():
         "history.html", prev_workouts=prev_workouts, num_workouts=num_workouts
     )
 
+@app.route("/getinput", methods=["GET"])
+@login_required
+def getinput():
+    """Loads the workouts page for the user make a selection"""
+    return flask.render_template(
+        "vworkouts.html", video="https://www.youtube.com/embed/vthMCtgVtFw"
+    )
+
+
+@app.route("/vworkouts", methods=["POST"])
+@login_required
+def vworkouts():
+    """Loads the workouts with the user selected workout video"""
+    selection = flask.request.form.get("selection")
+
+    my_dict = {
+        "Benchpress": "https://www.youtube.com/embed/vthMCtgVtFw",
+        "Squats": "https://www.youtube.com/embed/nEQQle9-0NA",
+        "Lunges": "https://www.youtube.com/embed/QOVaHwm-Q6U",
+        "Deadlifts": "https://www.youtube.com/embed/hCDzSR6bW10",
+        "Shoulder Press": "https://www.youtube.com/embed/qEwKCR5JCog",
+        "Bicep Curls": "https://www.youtube.com/embed/yTWO2th-RIY",
+    }
+    workout = my_dict.get(selection)
+
+    return flask.render_template("vworkouts.html", video=workout, workoutType=selection)
 
 @app.route("/delete/<int:workout_id>", methods=["POST", "GET"])
 @login_required
