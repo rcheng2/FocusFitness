@@ -50,7 +50,6 @@ class TestWebApp(unittest.TestCase):
     def test_login_form(self):
         """ Tests if login form has correct components """
         response = self.client.get("/")
-        print(response.status_code)
         assert response.status_code == 200
         html  = response.get_data(as_text=True)
 
