@@ -44,5 +44,5 @@ jobs:
         run: find . -name '*.py' -exec pylint {} \;
         
       - name: Run tests
-        run: python -m unittest
+        run: python3 tests.py
       
