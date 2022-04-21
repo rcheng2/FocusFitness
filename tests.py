@@ -3,7 +3,6 @@ import os
 import unittest
 from unittest.mock import MagicMock, patch
 from flask import current_app
-from flask_login import FlaskLoginClient, current_user
 from helper_functions import get_quote
 
 os.environ[
@@ -11,7 +10,7 @@ os.environ[
 ] = "sqlite://"  # required to be here to use in-memory database for tests
 os.environ["SECRET_KEY"] = "top_secret_key_lol"  # same as above
 from app import app  # pylint: disable = wrong-import-position
-from database import db, User  # pylint: disable = wrong-import-position
+from database import db  # pylint: disable = wrong-import-position
 
 
 class TestWebApp(unittest.TestCase):

@@ -3,8 +3,8 @@ Database for reviews
 ref:
 https://overiq.com/flask-101/authentication-in-flask/
 """
-import pytz
 from datetime import datetime
+import pytz
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 
