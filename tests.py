@@ -3,6 +3,7 @@ import os
 import unittest
 from unittest.mock import MagicMock, patch
 from flask import current_app
+from flask_login import FlaskLoginClient, current_user
 from helper_functions import get_quote
 
 os.environ[
@@ -10,7 +11,7 @@ os.environ[
 ] = "sqlite://"  # required to be here to use in-memory database for tests
 os.environ["SECRET_KEY"] = "top_secret_key_lol"  # same as above
 from app import app  # pylint: disable = wrong-import-position
-from database import db  # pylint: disable = wrong-import-position
+from database import db, User  # pylint: disable = wrong-import-position
 
 
 class TestWebApp(unittest.TestCase):
@@ -33,6 +34,19 @@ class TestWebApp(unittest.TestCase):
         self.app = None
         self.appctx = None
         self.client = None
+
+    def register_and_login(self):
+        """Registers and logs in new users for tests"""
+        self.client.post(
+            "/registernewuser",
+            data={"newuserid": "new_user", "newpassword": "password123"},
+            follow_redirects=True,
+        )
+        self.client.post(
+            "/loginuser",
+            data={"userid": "new_user", "pwd": "password123"},
+            follow_redirects=True,
+        )
 
     def test_app(self):
         """Check if app is configured properly"""
@@ -82,6 +96,43 @@ class TestWebApp(unittest.TestCase):
         assert response.status_code == 200
         html = response.get_data(as_text=True)
         assert "Welcome new_user" in html
+
+        response = self.client.post(
+            "/calculate",
+            data={"duration": "60", "weight": "100", "exercise_type": "Running"},
+            follow_redirects=True,
+        )
+        assert response.status_code == 200
+
+    def test_calculate(self):
+        """Test for calculate route"""
+        self.register_and_login()
+        response = self.client.post(
+            "/calculate",
+            data={"duration": "60", "weight": "100", "exercise_type": "Running"},
+            follow_redirects=True,
+        )
+        assert response.status_code == 200
+        html = response.get_data(as_text=True)
+        assert "You burned 735.0 calories!!!" in html
+
+        response = self.client.post(
+            "/calculate",
+            data={"duration": "60", "weight": "100", "exercise_type": "Weightlifting"},
+            follow_redirects=True,
+        )
+        assert response.status_code == 200
+        html = response.get_data(as_text=True)
+        assert "You burned 630.0 calories!!!" in html
+
+        response = self.client.post(
+            "/calculate",
+            data={"duration": "60", "weight": "100", "exercise_type": "something_else"},
+            follow_redirects=True,
+        )
+        assert response.status_code == 200
+        html = response.get_data(as_text=True)
+        assert "You burned 315.0 calories!!!" in html
 
 
 class QuotesTests(unittest.TestCase):

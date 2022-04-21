@@ -192,7 +192,6 @@ def calculate():
         db.session.add(new_event)
         db.session.commit()
         events = Event.query.filter_by(username=current_user.username).all()
-        print(events)
         num_events = len(events)
         return flask.render_template(
             "home.html",

@@ -18,7 +18,7 @@ class Record(db.Model):
 
     # pylint: disable=no-member
     id = db.Column(db.Integer, primary_key=True)
-    eastern_time = pytz.timezone('US/Eastern')
+    eastern_time = pytz.timezone("US/Eastern")
     timestamp = db.Column(db.DateTime, default=datetime.now(eastern_time))
     username = db.Column(db.String(80))
     duration = db.Column(db.Integer)
