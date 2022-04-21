@@ -27,13 +27,13 @@
                     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/index">Home</a>
+                                <a class="nav-link" aria-current="page" href="/index">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="/history">History</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/workouts">Workout</a>
+                                <a class="nav-link" aria-current="page" href="/workouts">Workout</a>
                             </li>
 
                             <li class="nav-item">
@@ -59,13 +59,14 @@
                 <div class="d-flex flex-column justify-content-center shadow-lg">
                     <form action="{{ url_for('edit')}}" method="POST">
                         <table>
+                            <br>
                             <h2>&nbsp;Update Workout Details&nbsp; </h2>
                             <br>
                             <th colspan="2"></th>
                             <input type="hidden" name="id" value={{workout.id}}>
                             <tr>
                                 <th>
-                                    Date:
+                                    &nbsp; Date:
                                 </th>
                                 <td>
                                     <input type="datetime-local" name="timestamp"
@@ -74,7 +75,7 @@
                             </tr>
                             <tr>
                                 <th>
-                                    Duration:
+                                    &nbsp; Duration:
                                 </th>
                                 <td>
                                     <input type="number" step="1" pattern="\d*" name="duration"
@@ -83,7 +84,7 @@
                             </tr>
                             <tr>
                                 <th>
-                                    Weight:
+                                    &nbsp; Weight:
                                 </th>
                                 <td>
                                     <input type="number" step="1" pattern="\d*" name="weight"
@@ -92,7 +93,7 @@
                             </tr>
                             <tr>
                                 <th>
-                                    Exercise type: {{workout.exercise_type}} (Current)
+                                    &nbsp; Exercise type: {{workout.exercise_type}} (Current)
                                 </th>
                                 <td>
                                     <select id="exercise_type" name="exercise_type">
@@ -128,11 +129,11 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>Calories burned:</th>
+                                <th> &nbsp; Calories burned:</th>
                                 <td>{{workout.calories_burned}}</td>
                             </tr>
                             <tr>
-                                <th span="2"><input type="submit" class="btn btn-success" value="Submit" /></th>
+                                <th span="2">&nbsp; <input type="submit" class="btn btn-success" value="Submit" /></th>
                             </tr>
 
                         </table>
