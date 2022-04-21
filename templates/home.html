@@ -7,21 +7,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/static/images/gym.png">
+
+
     <!-- calendar -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.min.css">
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.js"></script>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+
+        document.addEventListener('DOMContentLoaded', function () {
             var calendarEl = document.getElementById('calendar');
             var temp = event.title;
             console.log(temp);
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
                 events: [
-                    {% for row in events %}{ id : '{{row.id}}', title : '{{row.title}}', allDay: true, start : '{{row.timestamp}}', end : '{{row.timestamp}}', url :'/history'}, {% endfor %}  
-                ]
+                    {% for row in events %}{ id: '{{ row.id }}', title: '{{ row.title }}', allDay: true, start: '{{ row.timestamp }}', end: '{{ row.timestamp }}', url: '/history' }, {% endfor %}
+            ]
             });
-            calendar.render();
+        calendar.render();
             
         });
     </script>
@@ -53,7 +58,8 @@
                             </li>
                             <li class="nav-item">
                                 <form method="POST" action="/logoff">
-                                    <input type="submit" value="Log Out!" a class="nav-link btn btn-outline-danger text-danger"></input>
+                                    <input type="submit" value="Log Out!" a
+                                        class="nav-link btn btn-outline-danger text-danger"></input>
                                 </form>
                             </li>
                         </ul>
@@ -63,7 +69,7 @@
         </div>
     </div>
     <div class="section">
-        <div style="margin-left: auto;margin-right: auto;text-align:center">
+        <div style="margin-left: auto;margin-right: auto;text-align:right">
             <a class="navbar-brand fs-2 font-weight-bold" href="/index"> Welcome {{currentuser}} </a>
         </div>
         <div class="container" style="height: auto;">
@@ -124,8 +130,24 @@
                                         <div class="row justify-content-center">
                                             <input type="submit" class="btn btn-warning shadow-lg px-4 w-auto"
                                                 value="Save" id="submit">
+
                                         </div>
+                                        <br>
                                     </form>
+
+                                </div>
+                                <div class="section">
+                                    <div class="col-lg-9 d-flex flex-column ">
+                                        <div class="quote-box m-8">
+                                            <br>
+                                            <h4 class="fw-bold text-white ">Quote: {{quote}}</h4>
+
+                                            <button id="submit" input type="submit"
+                                                class="btn btn-warning shadow-lg px-4 w-auto"
+                                                onClick="window.location.reload();">Need more motivation?</button>
+                                            </br>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -141,20 +163,10 @@
         <br>
         <br>
         <br>
-        
+
     </div>
-    <div class="section">
-        <div class="col-lg-6 d-flex flex-column ">
-            <div class="quote-box m-8">
-                <br>
-                <h4 class="fw-bold text-primary ">Quote: {{quote}}</h4>
-                
-                <button id="submit" input type="submit" class="btn btn-warning shadow-lg px-4 w-auto" onClick="window.location.reload();">Need more motivation?</button>
-                </br>
-            </div>
-        </div>
-    </div>
-    
+
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -165,5 +177,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
+
 </body>
+
 </html>

@@ -54,7 +54,13 @@ def hashedpass(ptext):
 @app.route("/")
 def login():
     """The first screen the user sees"""
-    return flask.render_template("login.html")
+    return flask.render_template("landing.html")
+
+
+@app.route("/login")
+def land():
+    """LOGIN PAGE"""
+    return render_template("login.html")
 
 
 @app.route("/signuppage", methods=["POST"])
@@ -150,10 +156,14 @@ def page_not_found(error):
     """error handling; redirect to 404.html"""
     return render_template("404.html"), 404
 
+
 @app.route("/workouts")
 def workouts():
     """Returns login screen"""
-    return flask.render_template("workouts.html",)
+    return flask.render_template(
+        "workouts.html",
+    )
+
 
 @app.route("/calculate", methods=["POST", "GET"])
 def calculate():
@@ -217,6 +227,7 @@ def load_history():
         "history.html", prev_workouts=prev_workouts, num_workouts=num_workouts
     )
 
+
 @app.route("/getinput", methods=["GET"])
 @login_required
 def getinput():
@@ -243,6 +254,7 @@ def vworkouts():
     workout = my_dict.get(selection)
 
     return flask.render_template("vworkouts.html", video=workout, workoutType=selection)
+
 
 @app.route("/delete/<int:workout_id>", methods=["POST", "GET"])
 @login_required

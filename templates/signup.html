@@ -8,47 +8,68 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="icon" type="image/x-icon" href="/static/images/gym.png">
     <link rel="stylesheet" href="/static/theme.css">
-    <title>signup page</title>
+    <title>Signup</title>
 </head>
+<div class="section shadow bg-dark-light">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark-light">
+            <div class="container-fluid">
+                <a class="navbar-brand fs-2 font-weight-bold" href="/">Focus Fitness</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
 
-<title>Sign Up for this website</title>
+
+
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
 
 <div class="signuppagediv" style="margin-left: auto;margin-right: auto;text-align:center">
-        <br>
-        <br>
-        <br>
-        <br>
-        <h1>Sign Up Page</h1>
-        <p>Enter your new username below!</p>
-        <div class="signup-track p-4 my-3">
-            <form method="POST" action="/registernewuser">
-                <input type="text" placeholder="Email" name="newuserid" required />
-                <br>
-                <br>
-                <input type="password" placeholder="Password" name="newpassword" required />
-                <br>
-                <br>
-                <input type="submit" value="Register Me!" class="btn btn-primary  w-auto m-3" />
-                <br>
-                {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                {% for message in messages %}
-                <strong>
-                    <p class="errormessage">{{message}}</p>
-                </strong>
-                {% endfor %}
-                {% endif %}
-                {% endwith %}
-                <br>
-                <a input type="submit" value="login page redirect" class="btn btn-warning shadow-lg px-4 w-auto" href="/">
-                  Already A user? Login Here!
-                </a>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1>Sign Up Page</h1>
+    <p>Enter your new username below!</p>
+    <div class="signup-track p-4 my-3">
+        <form method="POST" action="/registernewuser">
+            <input type="text" placeholder="Email" name="newuserid" required />
+            <br>
+            <br>
+            <input type="password" placeholder="Password" name="newpassword" required />
+            <br>
+            <br>
+            <input type="submit" value="Register Me!" class="btn btn-primary  w-auto m-3" />
+            <br>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <strong>
+                <p class="errormessage">{{message}}</p>
+            </strong>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <br>
+            <a input type="submit" value="login page redirect" class="btn btn-warning shadow-lg px-4 w-auto"
+                href="/login">
+                Already A user? Login Here!
+            </a>
 
-        </div>
-        
-        </form>
+    </div>
+
+    </form>
 </div>
 
 <body>
