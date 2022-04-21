@@ -1,5 +1,5 @@
 body {
-    background-image: url("coaches_bg.jpg");
+    background-image: url("images/coaches_bg.jpg");
     background-size: auto;
 }
 
@@ -41,6 +41,8 @@ body {
     height: auto;
     border-radius: 20px;
     background-color: rgb(211, 211, 228);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .edit-workout {
@@ -70,4 +72,5 @@ body {
 .box .Calendar {
     position: absolute;
     right: 0;
+
 }
