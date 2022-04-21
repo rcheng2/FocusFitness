@@ -88,7 +88,7 @@ def registernewuser():
         db.session.add(new_user)
         db.session.commit()
         flask.flash("User Successfully Created. Try logging in!")
-        return flask.redirect(flask.url_for("land"))
+        return flask.redirect(flask.url_for("login"))
     except:  # pylint: disable=bare-except
         flask.flash("This user already exists, Usernames must be unique. Try again")
         return flask.redirect(flask.url_for("signup"))
