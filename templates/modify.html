@@ -68,7 +68,8 @@
                                     Date:
                                 </th>
                                 <td>
-                                    <input type="datetime-local" name="timestamp" value="{{workout.timestamp.strftime('%Y-%m-%d %H:%M')}}" />
+                                    <input type="datetime-local" name="timestamp"
+                                        value="{{workout.timestamp.strftime('%Y-%m-%d %H:%M')}}" />
                                 </td>
                             </tr>
                             <tr>
@@ -91,7 +92,7 @@
                             </tr>
                             <tr>
                                 <th>
-                                    Exercise type: {{workout.exercise_type}} (Current) 
+                                    Exercise type: {{workout.exercise_type}} (Current)
                                 </th>
                                 <td>
                                     <select id="exercise_type" name="exercise_type">
