@@ -160,9 +160,7 @@ def page_not_found(error):
 @app.route("/workouts")
 def workouts():
     """Returns login screen"""
-    return flask.render_template(
-        "workouts.html",
-    )
+    return flask.render_template("workouts.html",)
 
 
 @app.route("/calculate", methods=["POST", "GET"])
@@ -190,10 +188,7 @@ def calculate():
         db.session.add(new_record)
         db.session.commit()
 
-        new_event = Event(
-            username=currentuser,
-            title=exercise_type,
-        )
+        new_event = Event(username=currentuser, title=exercise_type,)
 
         db.session.add(new_event)
         db.session.commit()
@@ -250,10 +245,14 @@ def vworkouts():
         "Deadlifts": "https://www.youtube.com/embed/hCDzSR6bW10",
         "Shoulder Press": "https://www.youtube.com/embed/qEwKCR5JCog",
         "Bicep Curls": "https://www.youtube.com/embed/yTWO2th-RIY",
+        "Burpees": "https://www.youtube.com/embed/dZgVxmf6jkA",
+        "Pull Ups": "https://www.youtube.com/embed/fO3dKSQayfg",
     }
     workout = my_dict.get(selection)
 
-    return flask.render_template("vworkouts.html", video=workout, workoutType=selection)
+    return flask.render_template(
+        "vworkouts.html", video=workout, workoutType=selection, selection=selection
+    )
 
 
 @app.route("/delete/<int:workout_id>", methods=["POST", "GET"])

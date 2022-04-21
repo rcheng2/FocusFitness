@@ -70,12 +70,14 @@
         <label>Choose a workout:</label>
         <form method="POST" action="/vworkouts">
             <select name="selection">
-                <option name="0">Benchpress</option>
-                <option name="1">Squats</option>
-                <option name="2">Lunges</option>
-                <option name="3">Deadlifts</option>
-                <option name="4">Shoulder Press</option>
-                <option name="5">Bicep Curls</option>
+                <option name="0" {% if selection=="Benchpress" %} selected {% endif %}>Benchpress</option>
+                <option name="1" {% if selection=="Squats" %} selected {% endif %}>Squats</option>
+                <option name="2" {% if selection=="Lunges" %} selected {% endif %}>Lunges</option>
+                <option name="3" {% if selection=="Deadlifts" %} selected {% endif %}>Deadlifts</option>
+                <option name="4" {% if selection=="Shoulder Press" %} selected {% endif %}>Shoulder Press</option>
+                <option name="5" {% if selection=="Bicep Curls" %} selected {% endif %}>Bicep Curls</option>
+                <option name="6" {% if selection=="Burpees" %} selected {% endif %}>Burpees</option>
+                <option name="7" {% if selection=="Pull Ups" %} selected {% endif %}>Pull Ups</option>
             </select>
             <button type="submit" id="submit">Go!</button>
         </form>
