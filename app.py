@@ -116,7 +116,7 @@ def loginuser():
         flask.flash(
             "User does not exist or you entered the wrong credentials. Try Again!"
         )
-        return flask.redirect(flask.url_for("login"))
+        return flask.redirect(flask.url_for("land"))
 
 
 @app.route("/logoff", methods=["POST"])

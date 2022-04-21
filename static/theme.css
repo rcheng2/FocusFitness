@@ -30,6 +30,28 @@ body {
     break-after: always;
 }
 
+.workout-box2 {
+    position: fixed;
+    height: 20em;
+    margin: auto;
+    top: 15%;
+    left: 25%;
+    grid-area: 1 / 2 / 2 / 3;
+    word-wrap: break-word;
+    break-after: always;
+}
+
+.workout-box3 {
+    position: fixed;
+    height: 20em;
+    margin: auto;
+    top: 15%;
+    left: 40%;
+    grid-area: 1 / 2 / 2 / 3;
+    word-wrap: break-word;
+    break-after: always;
+}
+
 .workout-track {
     height: auto;
     border-radius: 20px;
@@ -43,6 +65,7 @@ body {
     background-color: rgb(211, 211, 228);
     margin-left: auto;
     margin-right: auto;
+
 }
 
 .edit-workout {
@@ -50,6 +73,8 @@ body {
     border-radius: 25px;
     background-color: rgb(211, 211, 228);
 }
+
+
 
 .recent-workout {
     height: auto;
