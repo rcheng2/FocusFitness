@@ -70,7 +70,7 @@ class TestWebApp(unittest.TestCase):
             follow_redirects=True,
         )
         assert response.status_code == 200
-        assert response.request.path == "/"
+        assert response.request.path == "/login"
 
         # login in new user
         response = self.client.post(
