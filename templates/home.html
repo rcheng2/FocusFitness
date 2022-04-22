@@ -15,7 +15,6 @@
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.js"></script>
 
     <script>
-
         document.addEventListener('DOMContentLoaded', function () {
             var calendarEl = document.getElementById('calendar');
             var temp = event.title;
@@ -23,8 +22,9 @@
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
                 events: [
-                    {% for row in events %}{ id: '{{ row.id }}', title: '{{ row.title }}', allDay: true, start: '{{ row.timestamp }}', end: '{{ row.timestamp }}', url: '/history' }, {% endfor %}
-            ]
+                    {% for row in events %}{ id: '{{row.id}}', title: '{{row.title}}', allDay: true, start: '{{row.timestamp}}', end: '{{row.timestamp}}', url: '/history' }, {% endfor %}  
+                ]
+
             });
         calendar.render();
             
@@ -165,8 +165,20 @@
         <br>
         <br>
 
-    </div>
 
+    </div>
+    <div class="section">
+        <div class="col-lg-6 d-flex flex-column ">
+            <div class="quote-box m-8">
+                <br>
+                <h4 class="fw-bold text-primary ">Quote: {{quote}}</h4>
+
+                <button id="submit" input type="submit" class="btn btn-warning shadow-lg px-4 w-auto"
+                    onClick="window.location.reload();">Need more motivation?</button>
+                </br>
+            </div>
+        </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -180,5 +192,4 @@
 
 
 </body>
-
 </html>

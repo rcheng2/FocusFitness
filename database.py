@@ -4,6 +4,7 @@ ref:
 https://overiq.com/flask-101/authentication-in-flask/
 """
 from datetime import datetime
+import pytz
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 
@@ -17,7 +18,8 @@ class Record(db.Model):
 
     # pylint: disable=no-member
     id = db.Column(db.Integer, primary_key=True)
-    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    eastern_time = pytz.timezone("US/Eastern")
+    timestamp = db.Column(db.DateTime, default=datetime.now(eastern_time))
     username = db.Column(db.String(80))
     duration = db.Column(db.Integer)
     weight = db.Column(db.Integer)

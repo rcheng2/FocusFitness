@@ -160,7 +160,10 @@ def page_not_found(error):
 @app.route("/workouts")
 def workouts():
     """Returns login screen"""
-    return flask.render_template("workouts.html",)
+    return flask.render_template(
+        "workouts.html",
+    )
+
 
 
 @app.route("/calculate", methods=["POST", "GET"])
@@ -193,7 +196,6 @@ def calculate():
         db.session.add(new_event)
         db.session.commit()
         events = Event.query.filter_by(username=current_user.username).all()
-        print(events)
         num_events = len(events)
         return flask.render_template(
             "home.html",
@@ -255,6 +257,7 @@ def vworkouts():
     )
 
 
+
 @app.route("/delete/<int:workout_id>", methods=["POST", "GET"])
 @login_required
 def delete(workout_id):
@@ -290,6 +293,7 @@ def edit():
     """Route to edit selected previous workout
     and update row in database"""
     workout_id = request.form.get("id")
+    timestamp = request.form.get("timestamp")
     exercise_type = request.form.get("exercise_type")
     duration = int(request.form.get("duration"))
     weight = int(request.form.get("weight"))
@@ -298,6 +302,8 @@ def edit():
     workout = Record.query.filter_by(id=workout_id).first()
     workout.duration = duration
     workout.weight = weight
+    workout.exercise_type = exercise_type
+    workout.timestamp = timestamp
     workout.calories_burned = calories_burned
     db.session.commit()  # pylint: disable=no-member
 
