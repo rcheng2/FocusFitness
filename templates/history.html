@@ -7,9 +7,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/static/images/gym.png">
 
     <link rel="stylesheet" href="/static/theme.css">
-    <title>Focus Fitness</title>
+    <title>History</title>
 </head>
 
 
@@ -34,7 +35,7 @@
                                 <a class="nav-link active" aria-current="page" href="/history">History</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="/workouts">Workout</a>
+                                <a class="nav-link" href="/getinput">Workouts</a>
                             </li>
 
                             <li class="nav-item">
@@ -55,14 +56,16 @@
         </div>
 
     </div>
-    <div class="col-lg-6">
-        <div class="workout-box p-3 ">
-            <div class="previous-workout p-4 my-3">
-                <div class="d-flex flex-column justify-content-center shadow-lg">
+
+    <div class="col-lg-6 ">
+        <div class="workout-box2 p-3 ">
+            <div class="previous-workout p-3 my-3 ">
+                <div class="d-flex flex-column justify-content-center shadow-lg ">
                     <h1>&nbsp;Previous Workouts</h1>
+                    <br>
                     <table>
                         <tr>
-                            <th>&nbsp; &nbsp;Date &nbsp; </th>
+                            <th> &nbsp; &nbsp;Date &nbsp; </th>
                             <th>Duration(minutes) &nbsp; &nbsp;</th>
                             <th>Weight (kilos) &nbsp; &nbsp;</th>
                             <th>Exercise Type &nbsp; &nbsp;</th>
@@ -72,7 +75,7 @@
                         </tr>
                         {% for i in range(num_workouts) %}
                         <tr>
-                            <td>&nbsp; {{prev_workouts[i].timestamp.strftime("%B %d, %Y")}}</td>
+                            <td>&nbsp;{{prev_workouts[i].timestamp.strftime("%B %d, %Y")}}</td>
                             <td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;{{prev_workouts[i].duration}}</td>
                             <td>{{prev_workouts[i].weight}}</td>
                             <td>{{prev_workouts[i].exercise_type}}</td>

@@ -7,9 +7,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/static/images/gym.png">
+
+
     <!-- calendar -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.min.css">
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.js"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var calendarEl = document.getElementById('calendar');
@@ -21,6 +25,7 @@
                 events: [
                     {% for row in events %}{ id: '{{row.id}}', title: '{{row.exercise_type}}', allDay: true, start: '{{row.timestamp}}', end: '{{row.timestamp}}', url: '/history' }, {% endfor %}  
                 ]
+
             });
         calendar.render();
             
@@ -65,7 +70,9 @@
         </div>
     </div>
     <div class="section">
+
         <div style="margin-left: auto;margin-right: auto;text-align:center; margin-bottom: 20px;">
+
             <a class="navbar-brand fs-2 font-weight-bold" href="/index"> Welcome {{currentuser}} </a>
             <br>
         </div>
@@ -146,6 +153,7 @@
         </div>
         
 
+
     </div>
     <div class="d-flex justify-content-center ">
         
@@ -167,6 +175,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
 
 </body>
 </html>
