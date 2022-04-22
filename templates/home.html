@@ -21,8 +21,9 @@
             console.log(temp);
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
+                height: 500,
                 events: [
-                    {% for row in events %}{ id: '{{row.id}}', title: '{{row.title}}', allDay: true, start: '{{row.timestamp}}', end: '{{row.timestamp}}', url: '/history' }, {% endfor %}  
+                    {% for row in events %}{ id: '{{row.id}}', title: '{{row.exercise_type}}', allDay: true, start: '{{row.timestamp}}', end: '{{row.timestamp}}', url: '/history' }, {% endfor %}  
                 ]
 
             });
@@ -69,115 +70,100 @@
         </div>
     </div>
     <div class="section">
-        <div style="margin-left: auto;margin-right: auto;text-align:right">
+
+        <div style="margin-left: auto;margin-right: auto;text-align:center; margin-bottom: 20px;">
+
             <a class="navbar-brand fs-2 font-weight-bold" href="/index"> Welcome {{currentuser}} </a>
+            <br>
         </div>
-        <div class="container" style="height: auto;">
-            <div class="row box">
-                <input type="button" class="btn btn-primary Calendar w-auto m-3" value="Calendar">
-                <div class="col-lg-6">
-                    <div class="workout-box p-3 ">
-                        <h3 class="mx-2">Workouts</h3>
-                        <h5 class="text-secondary fw-normal mx-2">What excercises would you like to track?</h5>
-                        <div class="workout-track p-4 my-3">
-                            <div class="d-flex flex-column justify-content-center shadow-lg">
-                                <div class="d-flex mx-2">
-                                    <form action="/calculate" method="POST">
-                                        {% if request.endpoint == 'calculate' %}
-                                        <h3 class="text-center my-2 text-white">{{display_calories_burned}}</h3>
-                                        {% endif %}
-                                        <h5 class="text-white">&nbsp; &nbsp;Input exercises: </h5>
-
-                                        <div class="dropdown mx-3 ">
-                                            <select id="exercise_type" name="exercise_type">
-                                                <option value="Running">Running</option>
-                                                <option value="Swimming">Swimming</option>
-                                                <option value="Crossfit">Crossfit</option>
-                                                <option value="Rowing">Rowing</option>
-                                                <option value="Mountain Biking">Mountain Biking</option>
-                                                <option value="Rock Climbing">Rock Climbing</option>
-                                                <option value="Gymnastics">Gymnastics</option>
-                                                <option value="Rugby">Rugby</option>
-                                                <option value="Football">Football</option>
-                                                <option value="Soccer">Soccer</option>
-                                                <option value="Water Polo">Water Polo</option>
-                                                <option value="Wrestling">Wrestling</option>
-                                                <option value="Martial arts">Martial arts</option>
-                                                <option value="Calisthenics">Calisthenics</option>
-                                                <option value="Beach Volleyball">Beach Volleyball</option>
-                                                <option value="Cycling">Cycling</option>
-                                                <option value="Lacrosse">Lacrosse</option>
-                                                <option value="Skateboarding">Skateboarding</option>
-                                                <option value="Ultimate Frisbee">Ultimate Frisbee</option>
-                                                <option value="Weightlifting">Weightlifting</option>
-                                                <option value="Jogging">Jogging</option>
-                                                <option value="Jump Rope">Jump Rope</option>
-                                                <option value="Baseball">Baseball</option>
-                                                <option value="Yoga">Yoga</option>
-                                                <option value="Dancing">Dancing</option>
-                                                <option value="Walking">Walking</option>
-                                                <option value="Stretching">Stretching</option>
-                                                <option value="Mobility Training">Mobility Training</option>
-                                            </select>
-                                        </div>
-                                        <div class="d-flex justify-content-center">
-                                            <input type="number" step="1" pattern="\d*"
-                                                class="form-control my-3 mx-2 w-75" name="duration"
-                                                placeholder="Time in minutes" required min="1" max="9999" />
-                                            <input type="number" step="1" pattern="\d*" class="form-control my-3 w-75"
-                                                name="weight" placeholder="Your weight in Kilos" required min="1"
-                                                max="9999" />
-                                        </div>
-                                        <div class="row justify-content-center">
-                                            <input type="submit" class="btn btn-warning shadow-lg px-4 w-auto"
-                                                value="Save" id="submit">
-
-                                        </div>
-                                        <br>
-                                    </form>
-
+        <div class="container" style="height: 700px;">
+            <div class="workout-track mw-100" style="height: 600px;">
+                <div class="row ">
+                    <div class=" col-lg p-5">    
+                        <h3 class="text-center my-2 text-white">Workouts</h3>
+                        <h5 class="text-center my-2 text-white">What exercises would you like to track?</h5>
+                        <div class="d-flex justify-content-center">
+                            <form action="/calculate" method="POST">
+                                
+                                <h5 class="text-white d-flex justify-content-center">Input exercises </h5>
+                                <div class="dropdown d-flex justify-content-center" style="width:362.65px; border-radius: 5px;">
+                                    <select id="exercise_type" name="exercise_type" style="width:362.65px;height: 48px; border-radius: 5px; padding-left: 14px;">
+                                        <option value="Running">Running</option>
+                                        <option value="Swimming">Swimming</option>
+                                        <option value="Crossfit">Crossfit</option>
+                                        <option value="Rowing">Rowing</option>
+                                        <option value="Mountain Biking">Mountain Biking</option>
+                                        <option value="Rock Climbing">Rock Climbing</option>
+                                        <option value="Gymnastics">Gymnastics</option>
+                                        <option value="Rugby">Rugby</option>
+                                        <option value="Football">Football</option>
+                                        <option value="Soccer">Soccer</option>
+                                        <option value="Water Polo">Water Polo</option>
+                                        <option value="Wrestling">Wrestling</option>
+                                        <option value="Martial arts">Martial arts</option>
+                                        <option value="Calisthenics">Calisthenics</option>
+                                        <option value="Beach Volleyball">Beach Volleyball</option>
+                                        <option value="Cycling">Cycling</option>
+                                        <option value="Lacrosse">Lacrosse</option>
+                                        <option value="Skateboarding">Skateboarding</option>
+                                        <option value="Ultimate Frisbee">Ultimate Frisbee</option>
+                                        <option value="Weightlifting">Weightlifting</option>
+                                        <option value="Jogging">Jogging</option>
+                                        <option value="Jump Rope">Jump Rope</option>
+                                        <option value="Baseball">Baseball</option>
+                                        <option value="Yoga">Yoga</option>
+                                        <option value="Dancing">Dancing</option>
+                                        <option value="Walking">Walking</option>
+                                        <option value="Stretching">Stretching</option>
+                                        <option value="Mobility Training">Mobility Training</option>
+                                    </select>
                                 </div>
-                                <div class="section">
-                                    <div class="col-lg-9 d-flex flex-column ">
-                                        <div class="quote-box m-8">
-                                            <br>
-                                            <h4 class="fw-bold text-white ">Quote: {{quote}}</h4>
+                                <input type="date" class="form-control form-control-lg my-3 " name="date"
+                                    placeholder="Date" required  /> 
 
-                                            <button id="submit" input type="submit"
-                                                class="btn btn-warning shadow-lg px-4 w-auto"
-                                                onClick="window.location.reload();">Need more motivation?</button>
-                                            </br>
-                                        </div>
-                                    </div>
+                                <input type="number" step="1" pattern="\d*"
+                                    class="form-control form-control-lg my-3 px-4" name="duration"
+                                    placeholder="Time in minutes" required min="1" max="9999" />
+                                        
+                                <input type="number" step="1" pattern="\d*" class="form-control form-control-lg my-3 px-4"
+                                    name="weight" placeholder="Your weight in Kilos" required min="1"
+                                    max="9999" />
+                                
+                                
+                                <div class="row justify-content-center">
+                                    <input type="submit" class="btn btn-lg btn-warning shadow-lg w-50 b-5"
+                                        value="Save" id="submit">
                                 </div>
-                            </div>
+                                <div>
+                                    <br>
+                                    {% if request.endpoint == 'calculate' %}
+                                    <h3 class="text-center my-2 text-white">{{display_calories_burned}}</h3>
+                                    {% endif %}
+                                </div>
+                            </form>
+
                         </div>
                     </div>
-                </div>
-                <div class="col-lg p-5 " style=" background-color: aliceblue; border-radius: 30px;">
-                    <div id="calendar" style="height:20rem; overflow-y: hidden; "></div>
+                    <div class="col-lg p-5 " style=" background-color: aliceblue; border-radius: 30px; height: 600px; ">
+                        <div id="calendar" style="  "></div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        
 
 
     </div>
-    <div class="section">
-        <div class="col-lg-6 d-flex flex-column ">
-            <div class="quote-box m-8">
-                <br>
+    <div class="d-flex justify-content-center ">
+        
+            <div class="quote-box px-4 w-50 text-wrap">
                 <h4 class="fw-bold text-primary ">Quote: {{quote}}</h4>
-
                 <button id="submit" input type="submit" class="btn btn-warning shadow-lg px-4 w-auto"
                     onClick="window.location.reload();">Need more motivation?</button>
                 </br>
             </div>
-        </div>
+        
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

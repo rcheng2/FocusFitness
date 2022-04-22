@@ -15,7 +15,7 @@ from flask_login import (
     login_required,
 )
 from helper_functions import get_calories_burned, get_quote
-from database import Record, User, db, Event
+from database import Record, User, db
 
 
 load_dotenv(find_dotenv())
@@ -144,7 +144,7 @@ def index():
     """Returns main app page after logging in"""
     quote = get_quote()
     currentuser = current_user.username
-    events = Event.query.filter_by(username=current_user.username).all()
+    events = Record.query.filter_by(username=current_user.username).all()
     return flask.render_template(
         "home.html", quote=quote, currentuser=currentuser, events=events
     )
@@ -175,7 +175,8 @@ def calculate():
         duration = int(flask.request.values.get("duration"))
         weight = int(flask.request.values.get("weight"))
         exercise_type = flask.request.values.get("exercise_type")
-
+        timestamp = flask.request.values.get("date")
+        print(timestamp)
         calories_burned = get_calories_burned(duration, weight, exercise_type)
         display_calories_burned = f"You burned {calories_burned} calories!!!"
 
@@ -183,6 +184,7 @@ def calculate():
             username=currentuser,
             duration=duration,
             weight=weight,
+            timestamp=timestamp,
             exercise_type=exercise_type,
             calories_burned=calories_burned,
         )
@@ -191,11 +193,8 @@ def calculate():
         db.session.add(new_record)
         db.session.commit()
 
-        new_event = Event(username=currentuser, title=exercise_type,)
 
-        db.session.add(new_event)
-        db.session.commit()
-        events = Event.query.filter_by(username=current_user.username).all()
+        events = Record.query.filter_by(username=current_user.username).all()
         num_events = len(events)
         return flask.render_template(
             "home.html",
@@ -264,7 +263,6 @@ def delete(workout_id):
     """Route to delete a previous workout from database"""
 
     Record.query.filter_by(id=workout_id).delete()
-    Event.query.filter_by(id=workout_id).delete()
     db.session.commit()  # pylint: disable=no-member
 
     username = current_user.username
