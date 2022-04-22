@@ -9,49 +9,76 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
+
+    <link rel="icon" type="image/x-icon" href="/static/images/gym.png">
+
     <link rel="stylesheet" href="/static/theme.css">
-    <title>login page</title>
-</head>>
+
+    <title>Login</title>
+</head>
 
 <body>
+    <div class="section shadow bg-dark-light">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand fs-2 font-weight-bold" href="/">Focus Fitness</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                        <ul class="navbar-nav">
+
+
+
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
     <div class="loginpage" style="margin-left: auto;margin-right: auto;text-align:center">
-        
-            <br>
-            <br>
-            <br>
-            <br>
 
-            <h1>Please enter your credentials:</h1>
-            <p>Email & Password Required</p>
+        <br>
+        <br>
+        <br>
+        <br>
 
-            <div class="signup-track p-4 my-3">
-                <form method="POST" action="/loginuser">
-                    <input type="text" placeholder="Email" name="userid" required />
-                    <br>
-                    <br>
-                    <input type="password" placeholder="Password" name="pwd" required />
-                    <br>
-                    <br>
-                    <input type="submit" value="Log in!" class="btn btn-primary  w-auto m-3" />
-                </form>
+        <h1>Please enter your credentials:</h1>
+        <p>Email & Password Required</p>
 
+        <div class="signup-track p-4 my-3">
+            <form method="POST" action="/loginuser">
+                <input type="text" placeholder="Email" name="userid" required />
                 <br>
-                {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                {% for message in messages %}
-                <strong>
-                    <p class="errormessage">{{message}}</p>
-                </strong>
-                {% endfor %}
-                {% endif %}
-                {% endwith %}
-
-                <form method="POST" action="/signuppage">
-                    <input type="submit" value="Sign up" class="btn btn-warning shadow-lg px-4 w-auto" />
-                </form>
-            </div>
+                <br>
+                <input type="password" placeholder="Password" name="pwd" required />
+                <br>
+                <br>
+                <input type="submit" value="Log in!" class="btn btn-primary  w-auto m-3" />
             </form>
-        
+
+            <br>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <strong>
+                <p class="errormessage">{{message}}</p>
+            </strong>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            <form method="POST" action="/signuppage">
+                <input type="submit" value="Sign up" class="btn btn-warning shadow-lg px-4 w-auto" />
+            </form>
+        </div>
+        </form>
+
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

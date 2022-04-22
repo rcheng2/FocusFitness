@@ -5,6 +5,7 @@ from unittest.mock import MagicMock, patch
 from flask import current_app
 from helper_functions import get_quote
 
+
 os.environ[
     "DATABASE_URL"
 ] = "sqlite://"  # required to be here to use in-memory database for tests
@@ -68,7 +69,7 @@ class TestWebApp(unittest.TestCase):
 
     def test_login_form(self):
         """Tests if login form has correct components"""
-        response = self.client.get("/")
+        response = self.client.get("/login")
         assert response.status_code == 200
         html = response.get_data(as_text=True)
 
@@ -84,7 +85,7 @@ class TestWebApp(unittest.TestCase):
             follow_redirects=True,
         )
         assert response.status_code == 200
-        assert response.request.path == "/"
+        assert response.request.path == "/login"
 
         # login in new user
         response = self.client.post(

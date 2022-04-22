@@ -54,7 +54,13 @@ def hashedpass(ptext):
 @app.route("/")
 def login():
     """The first screen the user sees"""
-    return flask.render_template("login.html")
+    return flask.render_template("landing.html")
+
+
+@app.route("/login")
+def land():
+    """LOGIN PAGE"""
+    return render_template("login.html")
 
 
 @app.route("/signuppage", methods=["POST"])
@@ -82,7 +88,7 @@ def registernewuser():
         db.session.add(new_user)
         db.session.commit()
         flask.flash("User Successfully Created. Try logging in!")
-        return flask.redirect(flask.url_for("login"))
+        return flask.redirect(flask.url_for("land"))
     except:  # pylint: disable=bare-except
         flask.flash("This user already exists, Usernames must be unique. Try again")
         return flask.redirect(flask.url_for("signup"))
@@ -110,7 +116,7 @@ def loginuser():
         flask.flash(
             "User does not exist or you entered the wrong credentials. Try Again!"
         )
-        return flask.redirect(flask.url_for("login"))
+        return flask.redirect(flask.url_for("land"))
 
 
 @app.route("/logoff", methods=["POST"])
@@ -159,6 +165,7 @@ def workouts():
     )
 
 
+
 @app.route("/calculate", methods=["POST", "GET"])
 def calculate():
     """Route to calculate calories burned and save workout to database"""
@@ -184,10 +191,7 @@ def calculate():
         db.session.add(new_record)
         db.session.commit()
 
-        new_event = Event(
-            username=currentuser,
-            title=exercise_type,
-        )
+        new_event = Event(username=currentuser, title=exercise_type,)
 
         db.session.add(new_event)
         db.session.commit()
@@ -243,10 +247,15 @@ def vworkouts():
         "Deadlifts": "https://www.youtube.com/embed/hCDzSR6bW10",
         "Shoulder Press": "https://www.youtube.com/embed/qEwKCR5JCog",
         "Bicep Curls": "https://www.youtube.com/embed/yTWO2th-RIY",
+        "Burpees": "https://www.youtube.com/embed/dZgVxmf6jkA",
+        "Pull Ups": "https://www.youtube.com/embed/fO3dKSQayfg",
     }
     workout = my_dict.get(selection)
 
-    return flask.render_template("vworkouts.html", video=workout, workoutType=selection)
+    return flask.render_template(
+        "vworkouts.html", video=workout, workoutType=selection, selection=selection
+    )
+
 
 
 @app.route("/delete/<int:workout_id>", methods=["POST", "GET"])
