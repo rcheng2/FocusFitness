@@ -248,6 +248,13 @@ def vworkouts():
         "Bicep Curls": "https://www.youtube.com/embed/yTWO2th-RIY",
         "Burpees": "https://www.youtube.com/embed/dZgVxmf6jkA",
         "Pull Ups": "https://www.youtube.com/embed/fO3dKSQayfg",
+        "Lat Pulldowns": "https://www.youtube.com/embed/OcFCHdQHjVU",
+        "Push Ups": "https://www.youtube.com/embed/IODxDxX7oi4",
+        "Hip Thrusts": "https://www.youtube.com/embed/xDmFkJxPzeM",
+        "10 Minute Abs Workout": "https://www.youtube.com/embed/zzD80vCLq0Y",
+        "Dumbbell Shrugs": "https://www.youtube.com/embed/cJRVVxmytaM",
+        "Tricep Extensions": "https://www.youtube.com/embed/PwOwL4B6iw4",
+        "Tricep Kickback": "https://www.youtube.com/embed/6SS6K3lAwZ8",
     }
     workout = my_dict.get(selection)
 
