@@ -56,7 +56,7 @@
     <div class="col-lg-6">
         <div class="workout-box3 p-3 ">
             <div class="edit-workout p-3 my-3">
-                <div class="d-flex flex-column justify-content-center shadow-lg">
+                <div class="d-flex flex-column justify-content-center shadow-lg p-4">
                     <form action="{{ url_for('edit')}}" method="POST">
                         <table>
                             <br>
@@ -68,16 +68,17 @@
                                 <th>
                                     &nbsp; Date:
                                 </th>
-                                <td>
-                                    <input type="date" name="timestamp" value={{workout.timestamp}}/>   
+                                <td class="p-1">
+                                    <input type="date" name="timestamp" value={{workout.timestamp}} />
                                 </td>
                             </tr>
                             <tr>
                                 <th>
                                     &nbsp; Duration:
                                 </th>
-                                <td>
+                                <td class="p-1">
                                     <input type="number" step="1" pattern="\d*" name="duration"
+                                        class="form-control form-control-sm " style="width:142.74px;"
                                         placeholder="Enter updated duration in minutes" value={{workout.duration}}>
                                 </td>
                             </tr>
@@ -85,8 +86,9 @@
                                 <th>
                                     &nbsp; Weight:
                                 </th>
-                                <td>
+                                <td class="p-1">
                                     <input type="number" step="1" pattern="\d*" name="weight"
+                                        class="form-control form-control-sm" style="width:142.74px;"
                                         placeholder="Enter updated weight in kilos" value={{workout.weight}}>
                                 </td>
                             </tr>
@@ -94,7 +96,7 @@
                                 <th>
                                     &nbsp; Exercise type: {{workout.exercise_type}} (Current)
                                 </th>
-                                <td>
+                                <td class="p-1">
                                     <select id="exercise_type" name="exercise_type">
                                         <option value="Running">Running</option>
                                         <option value="Swimming">Swimming</option>
