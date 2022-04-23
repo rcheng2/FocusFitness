@@ -4,7 +4,6 @@ import hashlib
 import flask
 from dotenv import find_dotenv, load_dotenv
 from flask import Flask, render_template, request
-import pdb
 
 # imports for login
 from flask_login import (
@@ -233,8 +232,8 @@ def getinput():
         video="https://www.youtube.com/embed/vthMCtgVtFw",
         workoutType="Benchpress",
         selection="Benchpress",
-        Areas=["Pecs (Chest)", "Front Delts", "Triceps"],
-        len=3,
+        areas=["Pecs (Chest)", "Front Delts", "Triceps"],
+        length=3,
         image="static/imgs/Benchpress.png",
     )
 
@@ -262,7 +261,7 @@ def vworkouts():
         "Tricep Extensions": "https://www.youtube.com/embed/PwOwL4B6iw4",
         "Tricep Kickback": "https://www.youtube.com/embed/6SS6K3lAwZ8",
     }
-    musclesWorked_pics = {
+    musclesworked_pics = {
         "Benchpress": "static/imgs/Benchpress.png",
         "Squats": "static/imgs/Squats.png",
         "Lunges": "static/imgs/Lunges.png",
@@ -280,7 +279,7 @@ def vworkouts():
         "Tricep Kickback": "static/imgs/Tricepkickbacks.png",
     }
 
-    musclesWorked_text = {
+    musclesworked_text = {
         "Benchpress": ["Pecs (Chest)", "Front Delts", "Triceps"],
         "Squats": ["Glutes", "Quadriceps", "Lower Abs"],
         "Lunges": ["Glutes", "Hamstrings", "Quadriceps"],
@@ -309,17 +308,17 @@ def vworkouts():
     }
 
     workout = my_dict.get(selection)
-    Areas = musclesWorked_text.get(selection)
-    image = str(musclesWorked_pics.get(selection))
-    len = 3
+    areas = musclesworked_text.get(selection)
+    image = str(musclesworked_pics.get(selection))
+    length = 3
 
     return flask.render_template(
         "vworkouts.html",
         video=workout,
         workoutType=selection,
         selection=selection,
-        Areas=Areas,
-        len=len,
+        areas=areas,
+        length=length,
         image=image,
     )
 
