@@ -4,7 +4,7 @@ import hashlib
 import flask
 from dotenv import find_dotenv, load_dotenv
 from flask import Flask, render_template, request
-
+import pdb
 
 # imports for login
 from flask_login import (
@@ -229,7 +229,13 @@ def load_history():
 def getinput():
     """Loads the workouts page for the user make a selection"""
     return flask.render_template(
-        "vworkouts.html", video="https://www.youtube.com/embed/vthMCtgVtFw"
+        "vworkouts.html",
+        video="https://www.youtube.com/embed/vthMCtgVtFw",
+        workoutType="Benchpress",
+        selection="Benchpress",
+        Areas=["Pecs (Chest)", "Front Delts", "Triceps"],
+        len=3,
+        image="static/imgs/Benchpress.png",
     )
 
 
@@ -256,10 +262,65 @@ def vworkouts():
         "Tricep Extensions": "https://www.youtube.com/embed/PwOwL4B6iw4",
         "Tricep Kickback": "https://www.youtube.com/embed/6SS6K3lAwZ8",
     }
+    musclesWorked_pics = {
+        "Benchpress": "static/imgs/Benchpress.png",
+        "Squats": "static/imgs/Squats.png",
+        "Lunges": "static/imgs/Lunges.png",
+        "Deadlifts": "static/imgs/Deadlifts.png",
+        "Shoulder Press": "static/imgs/ShoulderPress.png",
+        "Bicep Curls": "static/imgs/Bicepcurls.png",
+        "Burpees": "static/imgs/Burpees.png",
+        "Pull Ups": "static/imgs/PullUps.png",
+        "Lat Pulldowns": "static/imgs/LatPulldown.png",
+        "Push Ups": "static/imgs/PushUps.png",
+        "Hip Thrusts": "static/imgs/HipThrusts.png",
+        "10 Minute Abs Workout": "static/imgs/Abs.png",
+        "Dumbbell Shrugs": "static/imgs/Shrugs.png",
+        "Tricep Extensions": "static/imgs/TricepExtensions.png",
+        "Tricep Kickback": "static/imgs/Tricepkickbacks.png",
+    }
+
+    musclesWorked_text = {
+        "Benchpress": ["Pecs (Chest)", "Front Delts", "Triceps"],
+        "Squats": ["Glutes", "Quadriceps", "Lower Abs"],
+        "Lunges": ["Glutes", "Hamstrings", "Quadriceps"],
+        "Deadlifts": [
+            "Lower Back",
+            "Upper Back",
+            "Gluteus Maximus",
+            "Quadriceps",
+            "Abs",
+        ],
+        "Shoulder Press": ["Anterior deltoid", "Lateral deltoid", "Triceps brachii"],
+        "Bicep Curls": ["Brachialis", "Biceps brachii", "Brachioradialis"],
+        "Burpees": ["Chest", "Glutes", "Triceps"],
+        "Pull Ups": ["Posterior deltoid", "Middle and Lower Back", "Biceps"],
+        "Lat Pulldowns": ["Lats", "Traps", "Rear deltoids"],
+        "Push Ups": ["Chest", "Deltoid", "Triceps"],
+        "Hip Thrusts": ["Glutes", "Hamstrings", "Quadriceps"],
+        "10 Minute Abs Workout": ["Upper Abs", "Lower Abs", "Obliques"],
+        "Dumbbell Shrugs": ["Upper trapezius", "Middle trapezius", "Deltoids"],
+        "Tricep Extensions": [
+            "Triceps brachii (medial head)",
+            "Triceps brachii (lateral head)",
+            "Triceps (long head)",
+        ],
+        "Tricep Kickback": ["Triceps", "Upper back", "Elbows"],
+    }
+
     workout = my_dict.get(selection)
+    Areas = musclesWorked_text.get(selection)
+    image = str(musclesWorked_pics.get(selection))
+    len = 3
 
     return flask.render_template(
-        "vworkouts.html", video=workout, workoutType=selection, selection=selection
+        "vworkouts.html",
+        video=workout,
+        workoutType=selection,
+        selection=selection,
+        Areas=Areas,
+        len=len,
+        image=image,
     )
 
 

@@ -18,6 +18,15 @@
 
         div {
             text-align: center;
+            font-family: Helvetica;
+        }
+
+        p {
+            font-family: Helvetica;
+        }
+
+        img {
+            border-radius: 10%;
         }
     </style>
 
@@ -100,6 +109,19 @@
     <div>
         <p>How to do {{workoutType}}</p>
     </div>
+    <div>
+        <h1>This excercise is good for working out:</h1>
+        {%for i in range(0, len)%}
+        <br>
+
+        <li>{{Areas[i]}}</li>
+        {%endfor%}
+        <br>
+    </div>
+    <div>
+        <img src={{image}} width="500" height="auto">
+    </div>
+    <br></br>
 
 </body>
 
