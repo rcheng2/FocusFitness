@@ -56,37 +56,40 @@
         </div>
 
     </div>
-
-    <div class="col-lg-6 ">
-        <div class="workout-box2 p-3 ">
-            <div class="previous-workout p-3 my-3 ">
-                <div class="d-flex flex-column justify-content-center shadow-lg ">
-                    <h1>&nbsp;Previous Workouts</h1>
-                    <br>
-                    <table>
-                        <tr>
-                            <th> &nbsp; &nbsp;Date &nbsp; </th>
-                            <th>Duration(minutes) &nbsp; &nbsp;</th>
-                            <th>Weight (kilos) &nbsp; &nbsp;</th>
-                            <th>Exercise Type &nbsp; &nbsp;</th>
-                            <th>Calories burned (kcal) &nbsp; &nbsp;</th>
-                            <th> &nbsp; &nbsp; &nbsp;Modify &nbsp; &nbsp;</th>
-                            <th>&nbsp; Delete &nbsp; &nbsp;</th>
-                        </tr>
-                        {% for i in range(num_workouts) %}
-                        <tr>
-                            <td>&nbsp;{{prev_workouts[i].timestamp.strftime("%B %d, %Y")}}</td>
-                            <td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;{{prev_workouts[i].duration}}</td>
-                            <td>{{prev_workouts[i].weight}}</td>
-                            <td>{{prev_workouts[i].exercise_type}}</td>
-                            <td>&nbsp; &nbsp; &nbsp; {{prev_workouts[i].calories_burned}}</td>
-                            <td><a href="{{url_for('modify', workout_id=prev_workouts[i].id)}}"
-                                    class="btn btn-primary Calendar w-auto m-3">Edit &nbsp;</a></td>
-                            <td><a href="{{url_for('delete', workout_id=prev_workouts[i].id)}}"
-                                    class="btn btn-danger">Delete</a> &nbsp;</td>
-                        </tr>
-                        {% endfor %}
-                    </table>
+    <div class=section>
+        <div style="margin-left: auto;margin-right: auto;text-align:center; margin-bottom: 20px;">
+            <div class="col-lg-6 ">
+                <div class="workout-box2 p-3 ">
+                    <div class="previous-workout p-3 my-3 ">
+                        <div class="d-flex flex-column justify-content-center shadow-lg ">
+                            <h1>&nbsp;Previous Workouts</h1>
+                            <br>
+                            <table>
+                                <tr>
+                                    <th> &nbsp; &nbsp;Date &nbsp; </th>
+                                    <th>Duration(minutes) &nbsp; &nbsp;</th>
+                                    <th>Weight (kilos) &nbsp; &nbsp;</th>
+                                    <th>Exercise Type &nbsp; &nbsp;</th>
+                                    <th>Calories burned (kcal) &nbsp; &nbsp;</th>
+                                    <th> &nbsp; &nbsp; &nbsp;Modify &nbsp; &nbsp;</th>
+                                    <th>&nbsp; Delete &nbsp; &nbsp;</th>
+                                </tr>
+                                {% for i in range(num_workouts) %}
+                                <tr>
+                                    <td>&nbsp;{{prev_workouts[i].timestamp.strftime("%B %d, %Y")}}</td>
+                                    <td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;{{prev_workouts[i].duration}}</td>
+                                    <td>{{prev_workouts[i].weight}}</td>
+                                    <td>{{prev_workouts[i].exercise_type}}</td>
+                                    <td>&nbsp; &nbsp; &nbsp; {{prev_workouts[i].calories_burned}}</td>
+                                    <td><a href="{{url_for('modify', workout_id=prev_workouts[i].id)}}"
+                                            class="btn btn-primary Calendar w-auto m-3">Edit &nbsp;</a></td>
+                                    <td><a href="{{url_for('delete', workout_id=prev_workouts[i].id)}}"
+                                            class="btn btn-danger">Delete</a> &nbsp;</td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
