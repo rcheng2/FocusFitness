@@ -1,7 +1,5 @@
 # FocusFitness
-Here is a link to our Sprint 1 [FocusFitness](https://tranquil-spire-20189.herokuapp.com/) 
-
-Here is a link to our Sprint 2 [FocusFitness](https://floating-ravine-92058.herokuapp.com/)
+Here is a link to our app [FocusFitness](https://floating-ravine-92058.herokuapp.com/)
 
 ## Lets Work out!
 In our web-app we are redefining the way you track and log your workouts! First off you will be greeted by our beautiful landing page where you can read up about features specific to this app and the names of the developers that worked to bring this project together. You'll also see there are 2 large buttons where you could either **Login** or **Signup** (using your email and password) to then land on our homepage. **This** is where the magic happens when you get to see all of our wonderful features in the app consisting of a working **Calorie Calculator** that will allow you to input any workout on the dropdown list and the date (along with how long you were working out and your weight) and it'll calculate how many estimated calories you've burned for that workout! Amazing right? Along side the Calore Calculator is a functioning **Calendar** that actively updates anytime you input a workout so you could keep track of all the workouts that has been done and put on our app. Last but not least we have a **Motivational Quote Generator** that would give you a new quote any time you press the button below or refresh the page. On our navigation bar we have 4 options: Home, History, Workouts, and Log out. 
@@ -30,3 +28,7 @@ export DATABASE_URL="<YOUR POSTGRESQL DB URL>"
 ```
 ## To run the app
 1. Run `python3 app.py`
+
+
+## Heroku Sprint 1
+Here is a link to our Sprint 1 [FocusFitness](https://tranquil-spire-20189.herokuapp.com/) 
